@@ -1,5 +1,5 @@
 [package]
-name = "HM Bachelor's thesis template"
+name = "hm-bachelors-thesis"
 version = "0.1.0"
 entrypoint = "lib.typ"
 authors = ["Stefanie Schmid"]
