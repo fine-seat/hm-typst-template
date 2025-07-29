@@ -4,7 +4,7 @@
   author: "",
   id: none,
   supervisors: none,
-  course-of-study: "Informatik"
+  course-of-study: "Informatik",
 ) = {
   align(center, [
     #v(1cm)
@@ -21,12 +21,12 @@
 
     #text(size: 16pt, weight: "bold", title)
 
+    #v(0.5cm)
+    
     #text(size: 14pt)[
       Abgabetermin
-      
-      #if date != none [
-        #date.display("[day].[month].[year]")
-      ]
+
+      #date
     ]
 
     #v(1fr)
@@ -42,7 +42,7 @@
     ] else [
       #supervisors
     ]
-    
+
   ])
   pagebreak()
 }
