@@ -1,5 +1,6 @@
 #let titlepage(
   title: "",
+  title-translation: "",
   date: none,
   author: "",
   id: none,
@@ -20,6 +21,8 @@
     #text(size: 14pt)[Bachelorarbeit]
 
     #text(size: 16pt, weight: "bold", title)
+
+    #text(size: 14pt, title-translation)
 
     #v(0.5cm)
     
