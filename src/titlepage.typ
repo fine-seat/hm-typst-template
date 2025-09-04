@@ -12,8 +12,7 @@
 
     #image("../media/HM_logo.jpg")
 
-    Hochschule München
-
+    Hochschule München \
     Fakultät für Informatik und Mathematik
 
     #v(2cm)
@@ -27,8 +26,7 @@
     #v(0.5cm)
     
     #text(size: 14pt)[
-      Abgabetermin
-
+      Abgabetermin \
       #date
     ]
 

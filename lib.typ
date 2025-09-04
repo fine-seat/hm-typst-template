@@ -32,14 +32,19 @@
     binding: left,
   )
 
-  show heading.where(level: 1): set block(below: 1cm) 
-  show heading.where(level: 2): set block(below: 0.75cm) 
+  set par(
+    justify: true
+  )
+
+  show heading.where(level: 1): set block(below: 0.5cm) 
+  show heading.where(level: 2): set block(below: 0.5cm) 
   show heading.where(level: 3): set block(below: 0.5cm) 
 
   set text(
-    size: 11pt,
+    size: 10pt,
     lang: "de",
-    region: "de"
+    region: "de",
+    font: "Arial"
   )
 
   import "src/titlepage.typ": titlepage
@@ -53,6 +58,19 @@
     id: student-id
   )
 
+  import "src/declaration.typ": declaration
+
+  declaration(
+    submission-date: format-date(submission-date, format: "[day]. [month repr:long] [year]"),
+    name: author,
+    student-id: student-id,
+    semester: semester,
+    study-group: study-group,
+    birth-date: format-date(birth-date)
+  )
+
+  pagebreak()
+
   set page(
     numbering: "i",
   )
@@ -65,13 +83,15 @@
   // -- toc
 
   // abstract
-  import "src/abstract.typ": abstract-page
+  if abstract != "" {
+    import "src/abstract.typ": abstract-page
 
-  abstract-page(
-    two-langs: abstract-two-langs,
-    abstract: abstract,
-    abstract-translation: abstract-translation
-  )
+    abstract-page(
+      two-langs: abstract-two-langs,
+      abstract: abstract,
+      abstract-translation: abstract-translation
+    )
+  }
   // -- abstract
 
   set page(
@@ -83,14 +103,4 @@
 
   pagebreak()
 
-  import "src/declaration.typ": declaration
-
-  declaration(
-    submission-date: format-date(submission-date),
-    name: author,
-    student-id: student-id,
-    semester: semester,
-    study-group: study-group,
-    birth-date: format-date(birth-date)
-  )
 }
