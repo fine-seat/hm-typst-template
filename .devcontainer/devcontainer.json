@@ -2,5 +2,6 @@
 	"image": "mcr.microsoft.com/devcontainers/base:ubuntu", 	
 	"features": {
 	    "ghcr.io/michidk/devcontainers-features/typst:1": {}
-	}
+	},
+	"postCreateCommand": "sudo apt update && sudo apt install -y fontconfig ttf-mscorefonts-installer && sudo fc-cache -vr"
 }
