@@ -29,6 +29,8 @@
     panic("Gender must be one of: 'm', 'w', 'd', or none")
   }
 
+  import "src/utils.typ": *
+
   set document(author: author, title: title, date: submission-date)
 
   set page(
@@ -52,6 +54,10 @@
     region: "de",
     font: "Arial",
   )
+
+  show: make-glossary
+  import "src/abbreviations.typ": abbreviations-list
+  register-glossary(abbreviations-list)
 
   import "src/titlepage.typ": titlepage
 
@@ -118,4 +124,12 @@
   body
 
   pagebreak()
+
+  set page(
+    numbering: "I",
+  )
+  counter(page).update(1)
+
+  heading([Abkürzungsverzeichnis], level: 1)
+  print-glossary(abbreviations-list, disable-back-references: true)
 }
