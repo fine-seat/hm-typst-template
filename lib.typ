@@ -12,6 +12,7 @@
   title: "",
   title-translation: "",
   author: "",
+  gender: none,
   student-id: none,
   birth-date: none,
   study-group: "",
@@ -21,8 +22,13 @@
   abstract-two-langs: true,
   abstract: "",
   abstract-translation: "",
+  blocking: false,
   body,
 ) = {
+  if gender != none and gender not in ("m", "w", "d") {
+    panic("Gender must be one of: 'm', 'w', 'd', or none")
+  }
+
   set document(author: author, title: title, date: submission-date)
 
   set page(
@@ -33,18 +39,18 @@
   )
 
   set par(
-    justify: true
+    justify: true,
   )
 
-  show heading.where(level: 1): set block(below: 0.5cm) 
-  show heading.where(level: 2): set block(below: 0.5cm) 
-  show heading.where(level: 3): set block(below: 0.5cm) 
+  show heading.where(level: 1): set block(below: 0.5cm)
+  show heading.where(level: 2): set block(below: 0.5cm)
+  show heading.where(level: 3): set block(below: 0.5cm)
 
   set text(
     size: 10pt,
     lang: "de",
     region: "de",
-    font: "Arial"
+    font: "Arial",
   )
 
   import "src/titlepage.typ": titlepage
@@ -55,8 +61,18 @@
     author: author,
     supervisors: supervisors,
     date: format-date(submission-date),
-    id: student-id
+    id: student-id,
   )
+
+  if blocking {
+    import "src/blocking.typ": blocking-notice
+
+    blocking-notice(
+      gender: gender,
+    )
+
+    pagebreak()
+  }
 
   import "src/declaration.typ": declaration
 
@@ -66,7 +82,7 @@
     student-id: student-id,
     semester: semester,
     study-group: study-group,
-    birth-date: format-date(birth-date)
+    birth-date: format-date(birth-date),
   )
 
   pagebreak()
@@ -89,7 +105,7 @@
     abstract-page(
       two-langs: abstract-two-langs,
       abstract: abstract,
-      abstract-translation: abstract-translation
+      abstract-translation: abstract-translation,
     )
   }
   // -- abstract
@@ -102,5 +118,4 @@
   body
 
   pagebreak()
-
 }
