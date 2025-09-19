@@ -1,6 +1,7 @@
 // example
 
 #import "lib.typ": thesis
+#import "src/utils.typ": *
 
 #show: thesis.with(
   title: lorem(15),
@@ -20,3 +21,5 @@
 = Section
 == Subsection
 #lorem(300)
+
+#todo[Mehr Text]

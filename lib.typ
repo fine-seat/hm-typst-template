@@ -30,7 +30,7 @@
   }
 
   import "src/utils.typ": *
-
+  
   set document(author: author, title: title, date: submission-date)
 
   set page(
@@ -39,6 +39,12 @@
     number-align: right,
     binding: left,
   )
+
+  if draft {
+    show cite: set text(fill: blue)
+    show footnote: set text(fill: purple)
+    set cite(style: "chicago-author-date")
+  }
 
   set par(
     justify: true,
