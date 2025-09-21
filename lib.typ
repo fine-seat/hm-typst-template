@@ -28,7 +28,7 @@
   if gender != none and gender not in ("m", "w", "d") {
     panic("Gender must be one of: 'm', 'w', 'd', or none")
   }
-  if supervisor-gender != none and gender not in ("m", "w", "d") {
+  if supervisor-gender != none and supervisor-gender not in ("m", "w", "d") {
     panic("Supervisor's gender must be one of: 'm', 'w', 'd', or none")
   }
 
