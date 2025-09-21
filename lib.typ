@@ -3,8 +3,6 @@
     date.display(format)
   } else if date != none {
     str(date)
-  } else {
-    datetime.today().display(format)
   }
 }
 
