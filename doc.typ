@@ -15,7 +15,9 @@
   birth-date: datetime(year: 2000, day: 1, month: 1),
   abstract-two-langs: true,
   abstract: lorem(45),
-  abstract-translation: lorem(40)
+  abstract-translation: lorem(40),
+  blocking: true,
+  gender: "w"
 ) 
 
 = Section

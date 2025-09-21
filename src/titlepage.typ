@@ -1,3 +1,5 @@
+#import "utils.typ": *
+
 #let titlepage(
   title: "",
   title-translation: "",
@@ -24,10 +26,16 @@
     #text(size: 14pt, title-translation)
 
     #v(0.5cm)
-    
+
     #text(size: 14pt)[
-      Abgabetermin \
-      #date
+      #if draft {
+        emph(text()[ENTWURF])
+      } else {
+        [
+          Abgabetermin \
+          #date
+        ]
+      }
     ]
 
     #v(1fr)

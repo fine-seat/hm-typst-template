@@ -23,6 +23,7 @@
   abstract: "",
   abstract-translation: "",
   blocking: false,
+  enable-header: true,
   body,
 ) = {
   if gender != none and gender not in ("m", "w", "d") {
@@ -30,7 +31,7 @@
   }
 
   import "src/utils.typ": *
-  
+
   set document(author: author, title: title, date: submission-date)
 
   set page(
@@ -127,7 +128,52 @@
   )
   counter(page).update(1)
 
+  set page(
+    header: if enable-header {
+      grid(
+        columns: (1fr, 1fr),
+        align: (left, right),
+        text(context {
+          let headings = query(heading.where(level: 1))
+          let current-page = here().page()
+
+          let current-heading = none
+          for h in headings {
+            if h.location().page() == current-page {
+              current-heading = h
+              break
+            } else if h.location().page() > current-page {
+              break
+            }
+          }
+
+          if current-heading == none {
+            for h in headings {
+              if h.location().page() < current-page {
+                current-heading = h
+              } else {
+                break
+              }
+            }
+          }
+
+          if current-heading != none {
+            if draft {
+              emph(text()[ENTWURF - ])
+            }
+            current-heading.body
+          }
+        }),
+        [#author],
+      )
+      v(-0.5em)
+      line(length: 100%, stroke: 0.05em)
+    },
+  )
+
   body
+
+  set page(header: none)
 
   pagebreak()
 
