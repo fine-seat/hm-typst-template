@@ -8,6 +8,8 @@
   id: none,
   supervisors: none,
   course-of-study: "Informatik",
+  gender: none,
+  supervisor-gender: none,
 ) = {
   align(center, [
     #v(1cm)
@@ -40,15 +42,30 @@
 
     #v(1fr)
 
-    Autor: #author
+    #if gender == "m" {
+      [Autor:]
+    } else if gender == "w" {
+      [Autorin:]
+    } else if gender == "d" or gender == none {
+      [Verfassende Person:]
+    }
+    #author
 
     Matrikelnummer: #id
 
     Studiengang: #course-of-study
 
-    Prüfer: #if type(supervisors) == array [
+    #if type(supervisors) == array [
+      [Prüfende Personen:]
       #supervisors.join(", ")
     ] else [
+      #if supervisor-gender == "m" {
+        [Prüfer:]
+      } else if supervisor-gender == "w" {
+        [Prüferin:]
+      } else if supervisor-gender == "d" or supervisor-gender == none {
+        [Prüfende Person:]
+      }
       #supervisors
     ]
 

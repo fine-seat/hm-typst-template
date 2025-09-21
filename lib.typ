@@ -18,6 +18,7 @@
   study-group: "",
   semester: "",
   supervisors: (),
+  supervisor-gender: none,
   submission-date: none,
   abstract-two-langs: true,
   abstract: "",
@@ -28,6 +29,9 @@
 ) = {
   if gender != none and gender not in ("m", "w", "d") {
     panic("Gender must be one of: 'm', 'w', 'd', or none")
+  }
+  if supervisor-gender != none and gender not in ("m", "w", "d") {
+    panic("Supervisor's gender must be one of: 'm', 'w', 'd', or none")
   }
 
   import "src/utils.typ": *
@@ -75,6 +79,8 @@
     supervisors: supervisors,
     date: format-date(submission-date),
     id: student-id,
+    gender: gender,
+    supervisor-gender: supervisor-gender
   )
 
   if blocking {
