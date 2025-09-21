@@ -1,64 +1,28 @@
-#set text(
-  size: 11pt,
-  region: "de",
-  lang: "de"
-)
+// example
 
-#set page(
-  paper: "a4",
-  margin: 2.5cm
-)
+#import "lib.typ": thesis
+#import "src/utils.typ": *
 
-#let title = "Title"
-#let author = "Author"
-#let date = datetime.today()
+#show: thesis.with(
+  title: lorem(15),
+  title-translation: lorem(12),
+  submission-date: datetime.today(),
+  student-id: 12345678,
+  author: "Erika Mustermann",
+  supervisors: "Prof. Dr. Max Mustermann",
+  semester: "WiSe 2025/26",
+  study-group: "IF7",
+  birth-date: datetime(year: 2000, day: 1, month: 1),
+  abstract-two-langs: true,
+  abstract: lorem(45),
+  abstract-translation: lorem(40),
+  blocking: true,
+  gender: "w",
+  supervisor-gender: "m"
+) 
 
-#set document(
-  title: title,
-  author: author,
-  date: date
-)
+= Section
+== Subsection
+#lorem(300)
 
-// titlepage
-#align(center, [
-  #v(1cm)
-
-  #image("media/HM_logo.jpg")
-
-  Hochschule München
-
-  Fakultät für Informatik und Mathematik
-
-  #v(2cm)
-
-  #text(size: 14pt)[Bachelorarbeit]
-
-  #text(size: 16pt, weight: "bold", title)
-
-  #text(size: 14pt)[Abgabetermin
-  
-  #date.display("[day].[month].[year]")]
-
-  #v(1cm)
-
-  #author
-])
-
-#pagebreak()
-
-#outline()
-
-#pagebreak()
-
-= Introduction
-In this report, we will explore the
-various factors that influence fluid
-dynamics in glaciers and how they
-contribute to the formation and
-behaviour of these natural structures. @nvidia_guide
-
-#include "src/chapter1.typ"
-
-#pagebreak()
-
-#bibliography("doc.bib")
+#todo[Mehr Text]
