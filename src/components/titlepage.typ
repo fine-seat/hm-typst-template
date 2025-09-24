@@ -1,4 +1,4 @@
-#import "utils.typ": *
+#import "../utils.typ": *
 
 #let titlepage(
   title: "",

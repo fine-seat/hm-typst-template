@@ -1,6 +1,4 @@
-// example
-
-#import "lib.typ": thesis
+#import "src/lib.typ": thesis
 #import "src/utils.typ": *
 
 #show: thesis.with(

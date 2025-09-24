@@ -31,45 +31,45 @@
   if supervisor-gender != none and supervisor-gender not in ("m", "w", "d") {
     panic("Supervisor's gender must be one of: 'm', 'w', 'd', or none")
   }
-
-  import "src/utils.typ": *
-
+  
+  import "utils.typ": *
+  
   set document(author: author, title: title, date: submission-date)
-
+  
   set page(
     paper: "a4",
     margin: 2.5cm,
     number-align: right,
     binding: left,
   )
-
+  
   if draft {
     show cite: set text(fill: blue)
     show footnote: set text(fill: purple)
     set cite(style: "chicago-author-date")
   }
-
+  
   set par(
     justify: true,
   )
-
+  
   show heading.where(level: 1): set block(below: 0.5cm)
   show heading.where(level: 2): set block(below: 0.5cm)
   show heading.where(level: 3): set block(below: 0.5cm)
-
+  
   set text(
     size: 10pt,
     lang: "de",
     region: "de",
     font: "Arial",
   )
-
+  
   show: make-glossary
-  import "src/abbreviations.typ": abbreviations-list
+  import "components/abbreviations.typ": abbreviations-list
   register-glossary(abbreviations-list)
-
-  import "src/titlepage.typ": titlepage
-
+  
+  import "components/titlepage.typ": titlepage
+  
   titlepage(
     title: title,
     title-translation: title-translation,
@@ -78,21 +78,21 @@
     date: format-date(submission-date),
     id: student-id,
     gender: gender,
-    supervisor-gender: supervisor-gender
+    supervisor-gender: supervisor-gender,
   )
-
+  
   if blocking {
-    import "src/blocking.typ": blocking-notice
-
+    import "components/blocking.typ": blocking-notice
+    
     blocking-notice(
       gender: gender,
     )
-
+    
     pagebreak()
   }
-
-  import "src/declaration.typ": declaration
-
+  
+  import "components/declaration.typ": declaration
+  
   declaration(
     submission-date: format-date(submission-date, format: "[day]. [month repr:long] [year]"),
     name: author,
@@ -101,24 +101,24 @@
     study-group: study-group,
     birth-date: format-date(birth-date),
   )
-
+  
   pagebreak()
-
+  
   set page(
     numbering: "i",
   )
   counter(page).update(1)
-
+  
   // toc
-  import "src/outline.typ": outline-page
-
+  import "components/outline.typ": outline-page
+  
   outline-page()
   // -- toc
-
+  
   // abstract
   if abstract != "" {
-    import "src/abstract.typ": abstract-page
-
+    import "components/abstract.typ": abstract-page
+    
     abstract-page(
       two-langs: abstract-two-langs,
       abstract: abstract,
@@ -126,12 +126,12 @@
     )
   }
   // -- abstract
-
+  
   set page(
     numbering: "1",
   )
   counter(page).update(1)
-
+  
   set page(
     header: if enable-header {
       grid(
@@ -140,7 +140,7 @@
         text(context {
           let headings = query(heading.where(level: 1))
           let current-page = here().page()
-
+          
           let current-heading = none
           for h in headings {
             if h.location().page() == current-page {
@@ -150,7 +150,7 @@
               break
             }
           }
-
+          
           if current-heading == none {
             for h in headings {
               if h.location().page() < current-page {
@@ -160,7 +160,7 @@
               }
             }
           }
-
+          
           if current-heading != none {
             if draft {
               emph(text()[ENTWURF - ])
@@ -174,22 +174,22 @@
       line(length: 100%, stroke: 0.05em)
     },
   )
-
+  
   body
-
+  
   set page(header: none)
-
+  
   pagebreak()
-
+  
   set page(
     numbering: "I",
   )
   counter(page).update(1)
-
+  
   heading([Abkürzungsverzeichnis], level: 1)
   print-glossary(abbreviations-list, disable-back-references: true)
-
+  
   pagebreak()
-
+  
   bibliography("references.bib", title: "Literaturverzeichnis", full: true)
 }
