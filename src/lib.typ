@@ -23,6 +23,7 @@
   abstract-translation: "",
   blocking: false,
   enable-header: true,
+  draft: true,
   body,
 ) = {
   if gender != none and gender not in ("m", "w", "d") {
@@ -31,6 +32,8 @@
   if supervisor-gender != none and supervisor-gender not in ("m", "w", "d") {
     panic("Supervisor's gender must be one of: 'm', 'w', 'd', or none")
   }
+
+  state("draft", draft).update(draft)
   
   import "utils.typ": *
   
@@ -79,6 +82,7 @@
     id: student-id,
     gender: gender,
     supervisor-gender: supervisor-gender,
+    draft: draft
   )
   
   if blocking {

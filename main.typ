@@ -16,7 +16,8 @@
   abstract-translation: lorem(40),
   blocking: true,
   gender: "w",
-  supervisor-gender: "m"
+  supervisor-gender: "m",
+  draft: true
 ) 
 
 = Section

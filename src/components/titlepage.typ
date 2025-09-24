@@ -10,6 +10,7 @@
   course-of-study: "Informatik",
   gender: none,
   supervisor-gender: none,
+  draft: true
 ) = {
   align(center, [
     #v(1cm)
