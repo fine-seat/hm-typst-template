@@ -188,4 +188,8 @@
 
   heading([Abkürzungsverzeichnis], level: 1)
   print-glossary(abbreviations-list, disable-back-references: true)
+
+  pagebreak()
+
+  bibliography("references.bib", title: "Literaturverzeichnis", full: true)
 }
