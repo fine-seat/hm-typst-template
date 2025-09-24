@@ -1,7 +1,11 @@
 {
-	"image": "mcr.microsoft.com/devcontainers/base:ubuntu", 	
+	"image": "mcr.microsoft.com/devcontainers/rust:latest", 	
 	"features": {
 	    "ghcr.io/michidk/devcontainers-features/typst:1": {}
 	},
-	"postCreateCommand": "sudo apt update && sudo apt install -y fontconfig ttf-mscorefonts-installer && sudo fc-cache -vr"
+	"postCreateCommand": [
+		"sudo apt update",
+		"cargo install --git https://github.com/typst/package-check.git",
+		"cargo install typship"
+	]
 }
