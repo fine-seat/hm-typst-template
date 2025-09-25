@@ -1,7 +1,7 @@
 [package]
 name = "hm-bachelors-thesis"
 version = "0.1.0"
-entrypoint = "src/lib.typ"
+entrypoint = "lib.typ"
 authors = ["fine-seat"]
 license = "MIT"
 description = "Unofficial Bachelor's thesis template for Munich University of Applied Sciences (Hochschule München)"

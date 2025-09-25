@@ -1,5 +1,4 @@
-#import "src/lib.typ": thesis
-#import "src/utils.typ": *
+#import "@preview/hm-bachelors-thesis:0.1.0": *
 
 #show: thesis.with(
   title: lorem(15),
@@ -17,6 +16,7 @@
   blocking: true,
   gender: "w",
   supervisor-gender: "m",
+  bib: bibliography("references.bib", title: "Literaturverzeichnis"),
   draft: true
 ) 
 

@@ -6,6 +6,8 @@
   }
 }
 
+#import "utils.typ": *
+
 #let thesis(
   title: "",
   title-translation: "",
@@ -24,6 +26,7 @@
   blocking: false,
   enable-header: true,
   draft: true,
+  bib: none,
   body,
 ) = {
   if gender != none and gender not in ("m", "w", "d") {
@@ -32,10 +35,8 @@
   if supervisor-gender != none and supervisor-gender not in ("m", "w", "d") {
     panic("Supervisor's gender must be one of: 'm', 'w', 'd', or none")
   }
-
-  state("draft", draft).update(draft)
   
-  import "utils.typ": *
+  state("draft", draft).update(draft)
   
   set document(author: author, title: title, date: submission-date)
   
@@ -82,7 +83,7 @@
     id: student-id,
     gender: gender,
     supervisor-gender: supervisor-gender,
-    draft: draft
+    draft: draft,
   )
   
   if blocking {
@@ -193,7 +194,9 @@
   heading([Abkürzungsverzeichnis], level: 1)
   print-glossary(abbreviations-list, disable-back-references: true)
   
-  pagebreak()
-  
-  bibliography("references.bib", title: "Literaturverzeichnis", full: true)
+  if bib != none {
+    pagebreak()
+    
+    bib
+  }
 }
