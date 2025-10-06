@@ -3,9 +3,5 @@
 	"features": {
 	    "ghcr.io/michidk/devcontainers-features/typst:1": {}
 	},
-	"postCreateCommand": [
-		"sudo apt update",
-		"cargo install --git https://github.com/typst/package-check.git",
-		"cargo install typship"
-	]
+	"postCreateCommand": "bash .devcontainer/post-create.sh"
 }
