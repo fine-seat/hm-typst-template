@@ -1,16 +1,18 @@
+#import "../utils.typ": *
+
 #let abstract-page(
   two-langs: true,
-  abstract: "",
-  abstract-translation: ""
+  abstract: none,
+  abstract-translation: none
 ) = {
   heading("Zusammenfassung")
 
-  text(abstract)
+  text(if abstract != none {abstract} else {todo[Zusammenfassung]})
 
   if two-langs == true {
     heading("Abstract")
 
-    text(abstract-translation)
+    text(if abstract-translation != none {abstract-translation} else {todo[Abstract]})
   }
 
   pagebreak()
