@@ -1,11 +1,3 @@
-#let format-date(date, format: "[day].[month].[year]") = {
-  if type(date) == datetime {
-    date.display(format)
-  } else if date != none {
-    str(date)
-  }
-}
-
 #import "utils.typ": *
 
 #let thesis(
@@ -36,6 +28,8 @@
   if supervisor-gender != none and supervisor-gender not in ("m", "w", "d") {
     panic("Supervisor's gender must be one of: 'm', 'w', 'd', or none")
   }
+
+  let lang = "de"
   
   state("draft", draft).update(draft)
   
@@ -64,8 +58,8 @@
   
   set text(
     size: 10pt,
-    lang: "de",
-    region: "de",
+    lang: lang,
+    region: lang,
     font: "Arial",
   )
   
@@ -78,7 +72,7 @@
     title-translation: title-translation,
     author: author,
     supervisors: supervisors,
-    date: format-date(submission-date),
+    date: custom-date-format(submission-date, lang: lang, pattern: "long"),
     id: student-id,
     gender: gender,
     supervisor-gender: supervisor-gender,
@@ -98,12 +92,12 @@
   import "components/declaration.typ": declaration
   
   declaration(
-    submission-date: format-date(submission-date, format: "[day]. [month repr:long] [year]"),
+    submission-date: custom-date-format(submission-date, lang: lang, pattern: "long"),
     name: author,
     student-id: student-id,
     semester: semester,
     study-group: study-group,
-    birth-date: format-date(birth-date),
+    birth-date: custom-date-format(birth-date, lang: lang, pattern: "dd.MM.yyyy"),
   )
   
   pagebreak()
