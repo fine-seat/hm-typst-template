@@ -22,7 +22,7 @@
 
     #v(2cm)
 
-    #text(size: 14pt)[Bachelorarbeit]
+    #text(size: 14pt)[Bachelorarbeit \ zur Erlangung des akademischen Grades \ Bachelor of Science]
 
     #text(size: 16pt, weight: "bold", title)
 
