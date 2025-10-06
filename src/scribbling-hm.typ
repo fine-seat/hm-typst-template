@@ -20,6 +20,7 @@
   draft: true,
   bib: none,
   abbreviations-list: none,
+  course-of-study: none,
   body,
 ) = {
   if gender != none and gender not in ("m", "w", "d") {
@@ -77,6 +78,7 @@
     gender: gender,
     supervisor-gender: supervisor-gender,
     draft: draft,
+    course-of-study: course-of-study
   )
 
   if blocking {

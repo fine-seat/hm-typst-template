@@ -7,7 +7,7 @@
   author: "",
   id: none,
   supervisors: none,
-  course-of-study: "Informatik",
+  course-of-study: none,
   gender: none,
   supervisor-gender: none,
   draft: true
