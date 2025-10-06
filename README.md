@@ -1,14 +1,14 @@
-# HM Typst template
+# scribbling-hm
 
 Unofficial computer science Bachelor's thesis template for Munich University of Applied Sciences (Hochschule München).
 
 ## Installation
-You can use this template in the Typst web app by clicking "Start from template" on the dashboard and searching for ``hm-bachelors-thesis``.
+You can use this template in the Typst web app by clicking "Start from template" on the dashboard and searching for ``scribbling-hm``.
 
 Alternatively, you can use the CLI to initialize this project using the command:
 
 ```bash
-typst init @preview/hm-bachelors-thesis
+typst init @preview/scribbling-hm
 ```
 
 ## Usage
