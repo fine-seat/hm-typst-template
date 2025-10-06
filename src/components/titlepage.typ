@@ -15,7 +15,7 @@
   align(center, [
     #v(1cm)
 
-    #image("../media/HM_logo.jpg")
+    #image("../media/HM_logo.png", width: 45%)
 
     Hochschule München \
     Fakultät für Informatik und Mathematik
