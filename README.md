@@ -23,6 +23,7 @@ typst init @preview/scribbling-hm
 |----------|-------------|
 | `title` | The title of your thesis |
 | `title-translation` | English translation of the title |
+| `course-of-study` | Your course of study |
 | `author` | Your full name |
 | `gender` | Your gender |
 | `student-id` | Your student ID number |
