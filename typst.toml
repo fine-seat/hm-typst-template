@@ -2,7 +2,7 @@
 name = "scribbling-hm"
 version = "0.1.1"
 entrypoint = "lib.typ"
-authors = ["fine-seat"]
+authors = ["stefanie <@fine-seat>"]
 license = "MIT"
 description = "Unofficial Bachelor's thesis template for Munich University of Applied Sciences (Hochschule München)"
 repository = "https://github.com/fine-seat/hm-typst-template"
@@ -14,4 +14,5 @@ exclude = [".devcontainer/"]
 [template]
 path = "template"
 entrypoint = "main.typ"
+
 thumbnail = "main.png"
