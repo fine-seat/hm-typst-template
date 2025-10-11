@@ -1,6 +1,6 @@
 #let variables-list = (
   (
     key: "typst",
-    short: text(blue)[`Typst`]
+    short: text(fill: rgb("#239dad"))[`Typst`]
   ),
 )

@@ -28,8 +28,6 @@
 
 = Section
 == Subsection
-#lorem(300)
+This @typst formatting is defined in the variables list.
 
 #todo[Mehr Text]
-
-This @typst formatting is defined in the variables list.
