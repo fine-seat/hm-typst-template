@@ -1,7 +1,7 @@
-#import "@preview/scribbling-hm:0.1.1": *
+#import "@preview/scribbling-hm:0.1.2": *
 
 #import "abbreviations.typ": abbreviations-list
-#register-glossary(abbreviations-list)
+#import "variables.typ": variables-list
 
 #show: thesis.with(
   title: lorem(15),
@@ -22,6 +22,7 @@
   supervisor-gender: "m",
   bib: bibliography("references.bib", title: "Literaturverzeichnis"),
   abbreviations-list: abbreviations-list,
+  variables-list: variables-list,
   draft: true
 ) 
 
@@ -30,3 +31,5 @@
 #lorem(300)
 
 #todo[Mehr Text]
+
+This @typst formatting is defined in the variables list.
