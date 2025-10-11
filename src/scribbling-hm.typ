@@ -21,6 +21,7 @@
   bib: none,
   abbreviations-list: none,
   course-of-study: none,
+  variables-list: none,
   body,
 ) = {
   if gender != none and gender not in ("m", "w", "d") {
@@ -78,7 +79,7 @@
     gender: gender,
     supervisor-gender: supervisor-gender,
     draft: draft,
-    course-of-study: course-of-study
+    course-of-study: course-of-study,
   )
 
   if blocking {
@@ -173,6 +174,9 @@
     },
   )
 
+  register-glossary(variables-list)
+  print-glossary(variables-list, invisible: true, disable-back-references: true)
+
   body
 
   set page(header: none)
@@ -185,6 +189,7 @@
   counter(page).update(1)
 
   heading([Abkürzungsverzeichnis], level: 1)
+  register-glossary(abbreviations-list)
   print-glossary(abbreviations-list, disable-back-references: true)
 
   if bib != none {

@@ -41,6 +41,7 @@ typst init @preview/scribbling-hm
 | `draft` | Enable draft mode (default: true) |
 | `bib` | Bibliography file reference |
 | `abbreviations-list` | Abbreviations for the glossary |
+| `variables-list` | Pre-defined variables |
 
 ### Draft mode
 
@@ -51,3 +52,7 @@ Additionally, if you're in draft mode, you can set todo texts in your document.
 ```typst
 #todo[Something to do]
 ```
+
+### Variables
+
+The `variables-list` is helpful if you want to pre-define frequently-used phrases, including their formatting.
