@@ -56,3 +56,6 @@ Additionally, if you're in draft mode, you can set todo texts in your document.
 ### Variables
 
 The `variables-list` is helpful if you want to pre-define frequently-used phrases, including their formatting. You can use them just like the abbreviations.
+
+> [!IMPORTANT]
+Your keys must be unique across all files (``abbreviations.typ`` and ``variables.typ``)

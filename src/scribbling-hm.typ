@@ -100,7 +100,7 @@
     student-id: student-id,
     semester: semester,
     study-group: study-group,
-    birth-date: custom-date-format(birth-date, lang: lang, pattern: "dd.MM.yyyy"),
+    birth-date: if (birth-date) {custom-date-format(birth-date, lang: lang, pattern: "dd.MM.yyyy")},
   )
 
   pagebreak()
