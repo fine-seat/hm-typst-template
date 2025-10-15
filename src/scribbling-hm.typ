@@ -133,42 +133,37 @@
 
   set page(
     header: if enable-header {
-      grid(
-        columns: (1fr, 1fr),
-        align: (left, right),
-        text(context {
-          let headings = query(heading.where(level: 1))
-          let current-page = here().page()
+      text(context {
+        let headings = query(heading.where(level: 1))
+        let current-page = here().page()
 
-          let current-heading = none
+        let current-heading = none
+        for h in headings {
+          if h.location().page() == current-page {
+            current-heading = h
+            break
+          } else if h.location().page() > current-page {
+            break
+          }
+        }
+
+        if current-heading == none {
           for h in headings {
-            if h.location().page() == current-page {
+            if h.location().page() < current-page {
               current-heading = h
+            } else {
               break
-            } else if h.location().page() > current-page {
-              break
             }
           }
+        }
 
-          if current-heading == none {
-            for h in headings {
-              if h.location().page() < current-page {
-                current-heading = h
-              } else {
-                break
-              }
-            }
+        if current-heading != none {
+          if draft {
+            emph(text()[ENTWURF - ])
           }
-
-          if current-heading != none {
-            if draft {
-              emph(text()[ENTWURF - ])
-            }
-            current-heading.body
-          }
-        }),
-        [#author],
-      )
+          current-heading.body
+        }
+      })
       v(-0.5em)
       line(length: 100%, stroke: 0.05em)
     },
