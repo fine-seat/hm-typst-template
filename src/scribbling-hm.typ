@@ -1,15 +1,15 @@
 #import "utils.typ": *
 
 #let thesis(
-  title: "",
-  title-translation: "",
-  author: "",
+  title: none,
+  title-translation: none,
+  author: none,
   gender: none,
   student-id: none,
   birth-date: none,
   study-group: "",
   semester: "",
-  supervisors: (),
+  supervisors: none,
   supervisor-gender: none,
   submission-date: none,
   abstract-two-langs: true,
@@ -35,7 +35,7 @@
 
   state("draft", draft).update(draft)
 
-  set document(author: author, title: title, date: submission-date)
+  set document(author: if (author != none) { author } else { "" }, title: title, date: submission-date)
 
   set page(
     paper: "a4",
@@ -100,7 +100,7 @@
     student-id: student-id,
     semester: semester,
     study-group: study-group,
-    birth-date: if (birth-date != none) {custom-date-format(birth-date, lang: lang, pattern: "dd.MM.yyyy")},
+    birth-date: if (birth-date != none) { custom-date-format(birth-date, lang: lang, pattern: "dd.MM.yyyy") },
   )
 
   pagebreak()

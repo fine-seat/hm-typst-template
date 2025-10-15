@@ -23,8 +23,8 @@
   bib: bibliography("references.bib", title: "Literaturverzeichnis"),
   abbreviations-list: abbreviations-list,
   variables-list: variables-list,
-  draft: true
-) 
+  draft: true,
+)
 
 = Section
 == Subsection
