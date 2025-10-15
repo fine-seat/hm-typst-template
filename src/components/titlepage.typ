@@ -53,11 +53,11 @@
 
     #if (author != none) {
       if gender == "m" {
-        [Autor:]
+        [Autor: ]
       } else if gender == "w" {
-        [Autorin:]
+        [Autorin: ]
       } else if gender == "d" or gender == none {
-        [Verfassende Person:]
+        [Verfassende Person: ]
       }
       author
     } else { todo[Autor] }
