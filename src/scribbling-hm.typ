@@ -172,6 +172,20 @@
   register-glossary(variables-list)
   print-glossary(variables-list, invisible: true, disable-back-references: true)
 
+  register-glossary(abbreviations-list)
+
+  show heading.where(depth: 1): it => {
+    pagebreak(weak: true)
+    it
+  }
+
+  show link: it => {
+    let ref = str(it.dest)
+    if variables-list.any(v => v.key == ref) {
+      it.body
+    } else { it }
+  }
+
   body
 
   set page(header: none)
@@ -184,7 +198,7 @@
   counter(page).update(1)
 
   heading([Abkürzungsverzeichnis], level: 1)
-  register-glossary(abbreviations-list)
+
   print-glossary(abbreviations-list, disable-back-references: true)
 
   if bib != none {
