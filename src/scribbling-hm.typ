@@ -179,13 +179,6 @@
     it
   }
 
-  show link: it => {
-    let ref = str(it.dest)
-    if variables-list.any(v => v.key == ref) {
-      it.body
-    } else { it }
-  }
-
   body
 
   set page(header: none)
@@ -199,11 +192,14 @@
 
   heading([Abkürzungsverzeichnis], level: 1)
 
-  print-glossary(abbreviations-list, disable-back-references: true)
+  print-glossary(abbreviations-list, deduplicate-back-references: true)
 
-  if bib != none {
-    pagebreak()
+  bib
 
-    bib
+  show link: it => {
+    let ref = str(it.dest)
+    if variables-list.any(v => v.key == ref) {
+      it.body
+    } else { it }
   }
 }

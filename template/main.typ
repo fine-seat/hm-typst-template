@@ -1,4 +1,5 @@
-#import "@preview/scribbling-hm:0.1.3": *
+// #import "@preview/scribbling-hm:0.1.3": *
+#import "../lib.typ": *
 
 #import "abbreviations.typ": abbreviations-list
 #import "variables.typ": variables-list
@@ -28,6 +29,6 @@
 
 = Section
 == Subsection
-This @typst formatting is defined in the variables list.
+This @typst formatting is defined in the variables list. It is processed by a @cpu. Another sentence using @cpu.
 
 #todo[Mehr Text]
