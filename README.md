@@ -21,6 +21,7 @@ typst init @preview/scribbling-hm
 
 | Property | Description |
 |----------|-------------|
+| `defaults` | The template defaults to choose (optional) |
 | `title` | The title of your thesis |
 | `title-translation` | English translation of the title |
 | `course-of-study` | Your course of study |
