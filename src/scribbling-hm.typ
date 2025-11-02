@@ -7,7 +7,7 @@
 )
 
 #let thesis(
-  defaults: none,
+  defaults: Defaults.Bachelor,
   ..args,
 ) = {
   if defaults == Defaults.Bachelor {

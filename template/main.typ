@@ -5,7 +5,6 @@
 #import "variables.typ": variables-list
 
 #show: thesis.with(
-  defaults: Defaults.Bachelor,
   title: lorem(15),
   title-translation: lorem(12),
   course-of-study: "Informatik",
