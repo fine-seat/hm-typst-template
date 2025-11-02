@@ -21,6 +21,7 @@ typst init @preview/scribbling-hm
 
 | Property | Description |
 |----------|-------------|
+| `defaults` | The template defaults to choose (optional) |
 | `title` | The title of your thesis |
 | `title-translation` | English translation of the title |
 | `course-of-study` | Your course of study |
@@ -37,6 +38,7 @@ typst init @preview/scribbling-hm
 | `abstract` | Your thesis abstract |
 | `abstract-translation` | English translation of abstract (if bilingual set to true) |
 | `blocking` | Enable blocking notice (default: false) |
+| `show-declaration` | Show declaration of authorship (default: true) |
 | `enable-header` | Show page headers (default: true) |
 | `draft` | Enable draft mode (default: true) |
 | `bib` | Bibliography file reference |

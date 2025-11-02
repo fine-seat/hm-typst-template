@@ -1,6 +1,7 @@
 #import "../utils.typ": *
 
 #let titlepage(
+  pretitle: none,
   title: none,
   title-translation: none,
   date: none,
@@ -22,7 +23,11 @@
 
     #v(2cm)
 
-    #text(size: 14pt)[Bachelorarbeit \ zur Erlangung des akademischen Grades \ Bachelor of Science]
+    #text(size: 14pt, if (pretitle != none) {
+      pretitle
+    } else {
+      todo[Art der Thesis]
+    })
 
     #text(size: 16pt, weight: "bold", if (title != none) {
       title
