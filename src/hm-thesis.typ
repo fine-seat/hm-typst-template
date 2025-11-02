@@ -18,6 +18,7 @@
   abstract: none,
   abstract-translation: none,
   blocking: false,
+  show-declaration: true,
   enable-header: true,
   draft: true,
   bib: none,
@@ -94,18 +95,20 @@
     pagebreak()
   }
 
-  import "components/declaration.typ": declaration
+  if show-declaration {
+    import "components/declaration.typ": declaration
 
-  declaration(
-    submission-date: custom-date-format(submission-date, lang: lang, pattern: "long"),
-    name: author,
-    student-id: student-id,
-    semester: semester,
-    study-group: study-group,
-    birth-date: if (birth-date != none) { custom-date-format(birth-date, lang: lang, pattern: "dd.MM.yyyy") },
-  )
+    declaration(
+      submission-date: custom-date-format(submission-date, lang: lang, pattern: "long"),
+      name: author,
+      student-id: student-id,
+      semester: semester,
+      study-group: study-group,
+      birth-date: if (birth-date != none) { custom-date-format(birth-date, lang: lang, pattern: "dd.MM.yyyy") },
+    )
 
-  pagebreak()
+    pagebreak()
+  }
 
   set page(
     numbering: "i",
