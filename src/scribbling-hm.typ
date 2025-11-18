@@ -80,6 +80,7 @@
     supervisor-gender: supervisor-gender,
     draft: draft,
     course-of-study: course-of-study,
+    date-today: custom-date-format(datetime.today(), lang: lang, pattern: "long"),
   )
 
   if blocking {
@@ -158,10 +159,13 @@
         }
 
         if current-heading != none {
-          if draft {
-            emph(text()[ENTWURF - ])
-          }
           current-heading.body
+          h(1fr)
+          if draft {
+            [
+              #text(red)[ENTWURF -- Stand: #custom-date-format(datetime.today(), lang: lang, pattern: "dd.MM.y")]
+            ]
+          }
         }
       })
       v(-0.5em)

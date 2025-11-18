@@ -11,6 +11,7 @@
   gender: none,
   supervisor-gender: none,
   draft: true,
+  date-today: none,
 ) = {
   align(center, [
     #v(1cm)
@@ -38,7 +39,9 @@
 
     #text(size: 14pt)[
       #if draft {
-        emph(text()[ENTWURF])
+        text(red)[
+          ENTWURF \
+          Stand: #date-today]
       } else {
         [
           Abgabetermin \
