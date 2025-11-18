@@ -67,6 +67,7 @@
 
   show: make-glossary
 
+  // titlepage
   import "components/titlepage.typ": titlepage
 
   titlepage(
@@ -83,6 +84,9 @@
     date-today: custom-date-format(datetime.today(), lang: lang, pattern: "long"),
   )
 
+  // ---
+
+  // blocking notice
   if blocking {
     import "components/blocking.typ": blocking-notice
 
@@ -92,6 +96,10 @@
 
     pagebreak()
   }
+
+  // ---
+
+  // declaration of independent writing
 
   import "components/declaration.typ": declaration
 
@@ -105,6 +113,8 @@
   )
 
   pagebreak()
+
+  // ---
 
   set page(
     numbering: "i",
@@ -178,6 +188,7 @@
 
   register-glossary(abbreviations-list)
 
+  // pagebreak before every level 1 heading
   show heading.where(depth: 1): it => {
     pagebreak(weak: true)
     it
