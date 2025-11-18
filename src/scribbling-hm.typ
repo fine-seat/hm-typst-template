@@ -44,11 +44,13 @@
     binding: left,
   )
 
-  if draft {
-    show cite: set text(fill: blue)
-    show footnote: set text(fill: purple)
-    set cite(style: "chicago-author-date")
-  }
+  // draft-based accents
+  set cite(
+    style: if draft {"springer-basic-author-date"} else {"ieee"}
+  )
+  show cite: set text(fill: if draft {orange} else {black})
+  show footnote: set text(fill: if draft {purple} else {black})
+  // ---
 
   set par(
     justify: true,
@@ -59,10 +61,8 @@
   show heading.where(level: 3): set block(below: 0.5cm)
 
   set text(
-    size: 10pt,
     lang: lang,
     region: lang,
-    // font: "Arial",
   )
 
   show: make-glossary

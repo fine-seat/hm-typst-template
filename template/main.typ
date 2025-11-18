@@ -29,6 +29,6 @@
 
 = Section
 == Subsection
-This @typst formatting is defined in the variables list. It is processed by a @cpu. Another sentence using @cpu.
+This @typst @typst_doc formatting is defined in the variables list. It is processed by a @cpu. Another sentence using @cpu. #footnote[A third @cpu sentence maybe?]
 
 #todo[Mehr Text]
