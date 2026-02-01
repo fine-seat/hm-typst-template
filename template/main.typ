@@ -1,5 +1,4 @@
-// #import "@preview/scribbling-hm:0.1.5": *
-#import "../lib.typ": *
+#import "@preview/scribbling-hm:0.1.6": *
 
 #import "abbreviations.typ": abbreviations-list
 #import "variables.typ": variables-list
