@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "@preview/scribbling-hm:0.1.7": *
 
 #import "abbreviations.typ": abbreviations-list
 #import "variables.typ": variables-list
@@ -24,7 +24,7 @@
   abbreviations-list: abbreviations-list,
   variables-list: variables-list,
   draft: true,
-  print: true
+  print: false
 )
 
 = Section
