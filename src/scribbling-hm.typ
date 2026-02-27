@@ -214,20 +214,29 @@
 
   body
 
-  set page(header: none, footer: formatted-footer(print: print, numbering: "I"), numbering: "I")
+  set page(
+    header: none,
+    footer: context {
+      let page-number = here().page()
+      let next-headings = query(selector(heading.where(level: 1)).after(here()))
+
+      if print and next-headings.len() > 0 {
+        let next = next-headings.first()
+        if next.location().page() == page-number + 1 and calc.rem(page-number, 2) == 0 {
+          return none
+        }
+      }
+
+      formatted-footer(print: print, numbering: "I")
+    },
+    numbering: "I",
+  )
 
   show heading.where(level: 1): set heading(numbering: none)
-  show heading.where(level: 1): it => {
-    if (print) {
-      let previous = query(selector(heading.where(level: 1, numbering: "I")).before(here()))
 
-      if previous.len() == 0 {
-        counter(page).update(1)
-      }
-    }
-    it
+  if print {
+    pagebreak(to: "odd", weak: true)
   }
-
   counter(page).update(1)
 
   heading([Abkürzungsverzeichnis], level: 1)
