@@ -1,4 +1,4 @@
-#import "@preview/scribbling-hm:0.1.6": *
+#import "../lib.typ": *
 
 #import "abbreviations.typ": abbreviations-list
 #import "variables.typ": variables-list
@@ -24,6 +24,7 @@
   abbreviations-list: abbreviations-list,
   variables-list: variables-list,
   draft: true,
+  print: true
 )
 
 = Section
@@ -61,3 +62,7 @@ Numbered lists too:
 
 = Another Section
 #lorem(40)
+
+#pagebreak()
+
+#lorem(200)
