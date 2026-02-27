@@ -7,5 +7,12 @@
 	"postAttachCommand": "git config --global --unset http.sslcainfo || true",
 	"mounts": [
 		"source=${localWorkspaceFolder}/.devcontainer/.config,target=/home/vscode/.config,type=bind"
-	]
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"tomoki1207.pdf"
+			]
+		}
+	}
 }
