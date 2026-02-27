@@ -6,6 +6,8 @@
 
 Unofficial computer science Bachelor's thesis template for Munich University of Applied Sciences (Hochschule München).
 
+TODO: Adjusting the template for both Bachelor's and Master's thesis
+
 ## Installation
 You can use this template in the Typst web app by clicking "Start from template" on the dashboard and searching for ``scribbling-hm``.
 
@@ -46,6 +48,7 @@ typst init @preview/scribbling-hm
 | `bib` | Bibliography file reference |
 | `abbreviations-list` | Abbreviations for the glossary |
 | `variables-list` | Pre-defined variables |
+| `print` | Enable print view (default: false) |
 
 ### Draft mode
 
@@ -63,3 +66,7 @@ The `variables-list` is helpful if you want to pre-define frequently-used phrase
 
 IMPORTANT:\
 Your keys must be unique across all files (``abbreviations.typ`` and ``variables.typ``)
+
+### Print view
+
+To get a print view, set `print` to true. This adds empty pages, optimizing binding and two sided printing. 
