@@ -84,7 +84,7 @@
     indent: 10pt,
   )
 
-  show: make-glossary
+  show: make-glossary.with(figure-caption-always-first: false, outline-always-first: false)
 
   register-glossary(variables-list)
   print-glossary(variables-list, invisible: true, disable-back-references: true)
