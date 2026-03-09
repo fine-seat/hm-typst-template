@@ -23,6 +23,9 @@
   course-of-study: none,
   variables-list: none,
   print: false,
+  show-image-outline: true,
+  show-listing-outline: true,
+  show-table-outline: true,
   body,
 ) = {
   if gender != none and gender not in ("m", "w", "d") {
@@ -161,75 +164,70 @@
   outline-page()
   // -- toc
 
-  // pagebreak before every level 1 heading
-  show heading.where(level: 1): it => {
-    pagebreak(weak: true)
-    if (print) {
-      set page(footer: none, header: none)
-      pagebreak(to: "odd")
-      let previous = query(selector(heading.where(level: 1, numbering: "1")).before(here()))
+  [
+    // pagebreak before every level 1 heading
+    #show heading.where(level: 1): it => {
+      pagebreak(weak: true)
+      if (print) {
+        set page(footer: none, header: none)
+        pagebreak(to: "odd")
+        let previous = query(selector(heading.where(level: 1, numbering: "1")).before(here()))
 
-      if previous.len() == 1 {
-        counter(page).update(1)
+        if previous.len() == 1 {
+          counter(page).update(1)
+        }
       }
-    }
-    it
-  }
-
-  // abstract
-  import "components/abstract.typ": abstract-page
-
-  abstract-page(
-    two-langs: abstract-two-langs,
-    abstract: abstract,
-    abstract-translation: abstract-translation,
-  )
-  // -- abstract
-
-  set page(
-    numbering: "1",
-    header: if (enable-header) { formatted-header(draft: draft, lang: lang, print: print) },
-    footer: formatted-footer(print: print, numbering: "1"),
-  )
-
-  counter(page).update(1)
-
-  show heading.where(level: 1): set heading(numbering: "1")
-  show heading.where(level: 2): set heading(numbering: "1.1")
-  show heading.where(level: 3): set heading(numbering: "1.1.1")
-  show heading.where(level: 4): set heading(numbering: "1.1.1.1")
-  show heading: set heading(supplement: [Kapitel])
-
-  let variables-keys = variables-list.map(e => e.key).filter(k => k != none).dedup()
-  show link: it => {
-    if (type(it.dest) == str) {
       it
-    } else {
-      if (variables-keys.any(k => repr(it.dest).contains(k))) {
-        it.body
-      } else {
+    }
+
+    // abstract
+    #import "components/abstract.typ": abstract-page
+
+    #abstract-page(
+      two-langs: abstract-two-langs,
+      abstract: abstract,
+      abstract-translation: abstract-translation,
+    )
+    // -- abstract
+
+    #set page(
+      numbering: "1",
+      header: if (enable-header) { formatted-header(draft: draft, lang: lang, print: print) },
+      footer: formatted-footer(print: print, numbering: "1"),
+    )
+
+    #counter(page).update(1)
+
+    #show heading.where(level: 1): set heading(numbering: "1")
+    #show heading.where(level: 2): set heading(numbering: "1.1")
+    #show heading.where(level: 3): set heading(numbering: "1.1.1")
+    #show heading.where(level: 4): set heading(numbering: "1.1.1.1")
+    #show heading: set heading(supplement: [Kapitel])
+
+    #let variables-keys = variables-list.map(e => e.key).filter(k => k != none).dedup()
+    #show link: it => {
+      if (type(it.dest) == str) {
         it
+      } else {
+        if (variables-keys.any(k => repr(it.dest).contains(k))) {
+          it.body
+        } else {
+          it
+        }
       }
     }
-  }
 
-  body
+    #body
+  ]
+
+  if print {
+    set page(footer: none)
+    pagebreak(to: "odd", weak: true)
+  }
 
   set page(
     header: none,
-    footer: context {
-      let page-number = here().page()
-      let next-headings = query(selector(heading.where(level: 1)).after(here()))
-
-      if print and next-headings.len() > 0 {
-        let next = next-headings.first()
-        if next.location().page() == page-number + 1 and calc.rem(page-number, 2) == 0 {
-          return none
-        }
-      }
-
-      formatted-footer(print: print, numbering: "I")
-    },
+    footer: formatted-footer(print: print, numbering: "I"),
     numbering: "I",
   )
 
@@ -250,6 +248,36 @@
     "long",
     "longplural",
   ))
+
+  pagebreak(weak: true)
+
+  if (show-image-outline) {
+    heading(level: 1)[Abbildungsverzeichnis]
+    outline(
+      target: figure.where(kind: image),
+      title: none,
+    )
+  }
+
+  if (show-listing-outline) {
+    heading(level: 1)[Listings]
+    outline(
+      target: figure.where(kind: raw),
+      title: none,
+    )
+  }
+
+  if (show-table-outline) {
+    heading(level: 1)[Tabellenverzeichnis]
+    outline(
+      target: figure.where(kind: table),
+      title: none,
+    )
+  }
+
+  if (show-image-outline or show-listing-outline or show-table-outline) {
+    pagebreak(weak: true)
+  }
 
   bib
 }
