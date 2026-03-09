@@ -67,7 +67,7 @@
 
     #if (id != none) { [Matrikelnummer: #id] } else { todo[Matrikelnummer] }
 
-    #if (course-of-study != none) { [Studiengang: #course-of-study ] } else { todo[Matrikelnummer] }
+    #if (course-of-study != none) { [Studiengang: #course-of-study ] } else { todo[Studiengang] }
 
     #if (supervisors != none) {
       if type(supervisors) == array [
