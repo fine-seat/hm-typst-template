@@ -240,7 +240,7 @@
 
   heading([Abkürzungsverzeichnis], level: 1)
 
-  print-glossary(abbreviations-list, deduplicate-back-references: true, shorthands: (
+  print-glossary(abbreviations-list, minimum-refs: 2, deduplicate-back-references: true, shorthands: (
     "plural",
     "capitalize",
     "capitalize-plural",
