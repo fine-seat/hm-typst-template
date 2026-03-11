@@ -4,24 +4,21 @@
 
 # scribbling-hm
 
-Unofficial computer science Bachelor's thesis template for Munich University of Applied Sciences (Hochschule München).
+Unofficial thesis template for Munich University of Applied Sciences (Hochschule München).
 
-TODO: Adjusting the template for both Bachelor's and Master's thesis
+ℹ️ Currently supports FK07 and FK21 (MUC.DAI) theses.
 
-## Installation
-You can use this template in the Typst web app by clicking "Start from template" on the dashboard and searching for ``scribbling-hm``.
+## Getting started
 
-Alternatively, you can use the CLI to initialize this project using the command:
+Initialize the project via the Typst CLI:
 
 ```bash
 typst init @preview/scribbling-hm
 ```
 
-## Usage
-1. Open the ``main.typ`` file.
-2. Customize the properties.
-3. Write the content at the bottom of the file.
-4. Compile.
+Or search for ``scribbling-hm`` in the Typst web app under "Start from template".
+
+After initialization, open ``main.typ``, fill in the properties below, and start writing.
 
 ### Properties
 
@@ -29,15 +26,15 @@ typst init @preview/scribbling-hm
 |----------|-------------|
 | `title` | The title of your thesis |
 | `title-translation` | English translation of the title |
-| `study-name` | Abbreviation of your course of study (default: `study-name.IFB` = computer science bachelor) |
+| `study-name` | Abbreviation of your course of study (default: `study-name.IFB`) |
 | `author` | Your full name |
-| `gender` | Your gender |
+| `gender` | Your gender (`"m"`, `"w"`, `"d"`, or `none`) |
 | `student-id` | Your student ID number |
 | `birth-date` | Your date of birth (optional) |
 | `study-group` | Your study group |
 | `semester` | Current semester |
 | `supervisors` | Array of supervisor names or single supervisor name |
-| `supervisor-gender` | Gender of supervisor |
+| `supervisor-gender` | Gender of supervisor (`"m"`, `"w"`, `"d"`, or `none`) |
 | `submission-date` | Date of thesis submission |
 | `abstract-two-langs` | Enable bilingual abstract (default: `true`) |
 | `abstract` | Your thesis abstract |
@@ -54,10 +51,11 @@ typst init @preview/scribbling-hm
 
 If you set ``draft`` to true, your thesis will have written "ENTWURF" all over the place. This will help you to keep track of whether you're finished or not.
 
-Additionally, if you're in draft mode, you can set todo texts in your document.
+Additionally, if you're in draft mode, you can use these helpers:
 
 ```typst
 #todo[Something to do]
+#done()
 ```
 
 ### Variables
@@ -72,5 +70,12 @@ Your keys must be unique across all files (``abbreviations.typ`` and ``variables
 To get a print view, set `print` to true. This adds empty pages, optimizing binding and two sided printing.
 
 ### Study name
+
+The `study-name` property controls how your thesis is labeled. Based on the selected value, the following information is derived automatically:
+
+- **Thesis type**: Bachelor's or Master's thesis
+- **Academic degree**: "Bachelor of Science" or "Master of Science"
+- **Faculty**: The faculty name
+- **Study program name**: The full study program name
 
 Abbreviations from: https://hm.edu/studium_1/im_studium/mein_studium/recht/stg_abkuerzungen.de.html
