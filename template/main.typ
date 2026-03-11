@@ -7,7 +7,7 @@
 #show: thesis.with(
   title: lorem(15),
   title-translation: lorem(12),
-  course-of-study: "Informatik",
+  study-name: study-name.IFB,
   submission-date: datetime.today(),
   student-id: 12345678,
   author: "Erika Mustermann",

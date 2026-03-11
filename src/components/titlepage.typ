@@ -1,4 +1,5 @@
 #import "../utils.typ": *
+#import "../study-info.typ": *
 
 #let titlepage(
   title: none,
@@ -7,7 +8,7 @@
   author: none,
   id: none,
   supervisors: none,
-  course-of-study: none,
+  study-info: none,
   gender: none,
   supervisor-gender: none,
   draft: true,
@@ -19,11 +20,11 @@
     #image("../media/HM_logo.png", width: 45%)
 
     Hochschule München \
-    Fakultät für Informatik und Mathematik
+    #study-info.fk
 
     #v(2cm)
 
-    #text(size: 14pt)[Bachelorarbeit \ zur Erlangung des akademischen Grades \ Bachelor of Science]
+    #text(size: 14pt)[#study-info.thesis-type \ zur Erlangung des akademischen Grades \ #study-info.degree]
 
     #text(size: 16pt, weight: "bold", if (title != none) {
       title
@@ -67,7 +68,7 @@
 
     #if (id != none) { [Matrikelnummer: #id] } else { todo[Matrikelnummer] }
 
-    #if (course-of-study != none) { [Studiengang: #course-of-study ] } else { todo[Studiengang] }
+    Studiengang: #study-info.name
 
     #if (supervisors != none) {
       if type(supervisors) == array [

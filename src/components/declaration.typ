@@ -5,6 +5,7 @@
   semester: none,
   student-id: none,
   submission-date: none,
+  thesis-type: "Bachelorarbeit"
 ) = { 
   v(1fr)
 
@@ -19,7 +20,7 @@
   v(1cm)
 
   [
-    Hiermit erkläre ich, dass ich die Bachelorarbeit selbständig verfasst, noch nicht anderweitig für Prüfungszwecke vorgelegt, keine anderen als die angegebenen Quellen oder Hilfsmittel benutzt sowie wörtliche und sinngemäße Zitate als solche gekennzeichnet habe.
+    Hiermit erkläre ich, dass ich die #thesis-type selbständig verfasst, noch nicht anderweitig für Prüfungszwecke vorgelegt, keine anderen als die angegebenen Quellen oder Hilfsmittel benutzt sowie wörtliche und sinngemäße Zitate als solche gekennzeichnet habe.
   ]
 
   v(2cm)

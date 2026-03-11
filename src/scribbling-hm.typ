@@ -1,4 +1,5 @@
 #import "utils.typ": *
+#import "study-info.typ": study-name
 
 #let thesis(
   title: none,
@@ -20,12 +21,9 @@
   draft: true,
   bib: none,
   abbreviations-list: none,
-  course-of-study: none,
+  study-name: study-name.IFB,
   variables-list: none,
   print: false,
-  show-image-outline: true,
-  show-listing-outline: true,
-  show-table-outline: true,
   body,
 ) = {
   if gender != none and gender not in ("m", "w", "d") {
@@ -98,6 +96,9 @@
   )
   show raw.where(block: true): set text(0.9em)
 
+  import "study-info.typ": get-study-info
+  let info = get-study-info(study-name)
+
   // titlepage
   import "components/titlepage.typ": titlepage
 
@@ -111,7 +112,7 @@
     gender: gender,
     supervisor-gender: supervisor-gender,
     draft: draft,
-    course-of-study: course-of-study,
+    study-info: info,
     date-today: custom-date-format(datetime.today(), lang: lang, pattern: "long"),
   )
   if (print) { pagebreak(to: "odd") }
@@ -123,6 +124,7 @@
 
     blocking-notice(
       gender: gender,
+      thesis-type: info.thesis-type
     )
 
     pagebreak()
@@ -143,6 +145,7 @@
     semester: semester,
     study-group: study-group,
     birth-date: if (birth-date != none) { custom-date-format(birth-date, lang: lang, pattern: "dd.MM.yyyy") },
+    thesis-type: info.thesis-type
   )
 
   pagebreak()
@@ -240,7 +243,7 @@
 
   heading([Abkürzungsverzeichnis], level: 1)
 
-  print-glossary(abbreviations-list, minimum-refs: 2, deduplicate-back-references: true, shorthands: (
+  print-glossary(abbreviations-list, deduplicate-back-references: true, minimum-refs: 2, shorthands: (
     "plural",
     "capitalize",
     "capitalize-plural",
@@ -251,33 +254,25 @@
 
   pagebreak(weak: true)
 
-  if (show-image-outline) {
-    heading(level: 1)[Abbildungsverzeichnis]
-    outline(
-      target: figure.where(kind: image),
-      title: none,
-    )
-  }
+  heading(level: 1)[Abbildungsverzeichnis]
+  outline(
+    target: figure.where(kind: image),
+    title: none
+  )
 
-  if (show-listing-outline) {
-    heading(level: 1)[Listings]
-    outline(
-      target: figure.where(kind: raw),
-      title: none,
-    )
-  }
+  heading(level: 1)[Listings]
+  outline(
+    target: figure.where(kind: raw),
+    title: none,
+  )
 
-  if (show-table-outline) {
-    heading(level: 1)[Tabellenverzeichnis]
-    outline(
-      target: figure.where(kind: table),
-      title: none,
-    )
-  }
+  heading(level: 1)[Tabellenverzeichnis]
+  outline(
+    target: figure.where(kind: table),
+    title: none,
+  )
 
-  if (show-image-outline or show-listing-outline or show-table-outline) {
-    pagebreak(weak: true)
-  }
+  pagebreak(weak: true)
 
   bib
 }

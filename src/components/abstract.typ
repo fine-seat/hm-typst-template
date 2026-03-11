@@ -14,5 +14,4 @@
 
     text(if abstract-translation != none {abstract-translation} else {todo[Abstract]})
   }
-
 }

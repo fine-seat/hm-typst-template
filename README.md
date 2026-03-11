@@ -29,7 +29,7 @@ typst init @preview/scribbling-hm
 |----------|-------------|
 | `title` | The title of your thesis |
 | `title-translation` | English translation of the title |
-| `course-of-study` | Your course of study |
+| `study-name` | Abbreviation of your course of study (default: `study-name.IFB` = computer science bachelor) |
 | `author` | Your full name |
 | `gender` | Your gender |
 | `student-id` | Your student ID number |
@@ -39,16 +39,16 @@ typst init @preview/scribbling-hm
 | `supervisors` | Array of supervisor names or single supervisor name |
 | `supervisor-gender` | Gender of supervisor |
 | `submission-date` | Date of thesis submission |
-| `abstract-two-langs` | Enable bilingual abstract (default: true) |
+| `abstract-two-langs` | Enable bilingual abstract (default: `true`) |
 | `abstract` | Your thesis abstract |
 | `abstract-translation` | English translation of abstract (if bilingual set to true) |
-| `blocking` | Enable blocking notice (default: false) |
-| `enable-header` | Show page headers (default: true) |
-| `draft` | Enable draft mode (default: true) |
+| `blocking` | Enable blocking notice (default: `false`) |
+| `enable-header` | Show page headers (default: `true`) |
+| `draft` | Enable draft mode (default: `true`) |
 | `bib` | Bibliography file reference |
 | `abbreviations-list` | Abbreviations for the glossary |
 | `variables-list` | Pre-defined variables |
-| `print` | Enable print view (default: false) |
+| `print` | Enable print view (default: `false`) |
 
 ### Draft mode
 
@@ -69,4 +69,8 @@ Your keys must be unique across all files (``abbreviations.typ`` and ``variables
 
 ### Print view
 
-To get a print view, set `print` to true. This adds empty pages, optimizing binding and two sided printing. 
+To get a print view, set `print` to true. This adds empty pages, optimizing binding and two sided printing.
+
+### Study name
+
+Abbreviations from: https://hm.edu/studium_1/im_studium/mein_studium/recht/stg_abkuerzungen.de.html
