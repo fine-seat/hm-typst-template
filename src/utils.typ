@@ -12,3 +12,12 @@
     ]
   }
 ]
+
+#let done() = [
+  #context {
+    let draft = state("draft").get()
+    if draft [
+      #emoji.checkmark.box
+    ]
+  }
+]
