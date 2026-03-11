@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.8
 
 > [!TIP]
 > The `course-of-study` parameter has been replaced by `study-name`, which accepts one of the predefined abbreviations from `study-name.<KEY>`. Based on the selected value, the thesis type (Bachelorarbeit/Masterarbeit), academic degree (B.Sc./M.Sc.), faculty, and study program name are derived automatically.
