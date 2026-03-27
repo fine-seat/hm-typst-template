@@ -24,6 +24,7 @@
   variables-list: none,
   print: false,
   language: "de",
+  appendix: none,
   body,
 ) = {
   if gender != none and gender not in ("m", "w", "d") {
@@ -293,4 +294,15 @@
 
   heading(level: 1)[#translations.bibliography]
   bib
+
+  pagebreak(weak: true)
+
+  counter(heading).update(0)
+  show heading.where(level: 1): set heading(numbering: "A")
+  show heading.where(level: 2): set heading(numbering: "A.1")
+
+  if (appendix != none and appendix != []) {
+    heading(level: 1)[#translations.appendix]
+    appendix
+  }
 }

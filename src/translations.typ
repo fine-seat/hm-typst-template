@@ -76,6 +76,10 @@
   chapter: value(
     de: "Kapitel",
     en: "Chapter"
+  ),
+  appendix: value(
+    de: "Anhang",
+    en: "Appendix"
   )
 )
 
