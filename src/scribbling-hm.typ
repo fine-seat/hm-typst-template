@@ -253,23 +253,41 @@
 
   pagebreak(weak: true)
 
-  heading(level: 1)[#translations.list-of-figures]
-  outline(
-    target: figure.where(kind: image),
-    title: none
-  )
+  context {
+    let images = figure.where(kind: image)
+    
+    if (query(images).len() > 0) {
+      heading(level: 1)[#translations.list-of-figures]
+      outline(
+        target: images,
+        title: none,
+      )
+    }
+  }
 
-  heading(level: 1)[#translations.list-of-listings]
-  outline(
-    target: figure.where(kind: raw),
-    title: none,
-  )
+  context {
+    let listings = figure.where(kind: raw)
+    
+    if (query(listings).len() > 0) {
+      heading(level: 1)[#translations.list-of-listings]
+      outline(
+        target: listings,
+        title: none,
+      )
+    }
+  }
 
-  heading(level: 1)[#translations.list-of-tables]
-  outline(
-    target: figure.where(kind: table),
-    title: none,
-  )
+  context {
+    let tables = figure.where(kind: table)
+
+    if (query(tables).len() > 0) {
+      heading(level: 1)[#translations.list-of-tables]
+      outline(
+        target: tables,
+        title: none,
+      )
+    }
+  }
 
   pagebreak(weak: true)
 
