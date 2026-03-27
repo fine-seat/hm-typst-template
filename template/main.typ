@@ -1,5 +1,4 @@
-// #import "@preview/scribbling-hm:0.1.8": *
-#import "../lib.typ": *
+#import "@preview/scribbling-hm:0.1.9": *
 
 #import "abbreviations.typ": abbreviations-list
 #import "variables.typ": variables-list
@@ -7,7 +6,7 @@
 #show: thesis.with(
   title: lorem(15),
   title-translation: lorem(12),
-  language: "en",
+  language: "de",
   study-name: study-name.IFB,
   submission-date: datetime.today(),
   student-id: 12345678,

@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.1.9
+
+> [!TIP]
+> Full English translation support has been added. The entire template is now available in English and German, including title page, all headings, figures, listings, and bibliographies. The language is controlled by the `language` parameter.
+> ```typst
+> #show: thesis.with(
+>   // ...
+>   language: "en",
+> )
+> ```
+
+> [!NOTE]
+> The `two-langs` parameter has been removed; the order is now determined by the `language` setting.
+
+> [!TIP]
+> An `appendix` parameter has been added to the thesis function. Use it to add additional material after the bibliography with separate numbering (A, A.1, A.2, ...).
+> ```typst
+> #show: thesis.with(
+>   // ...
+>   appendix: include "appendix.typ",
+> )
+> ```
+
+> [!NOTE]
+> Optional outlines are now shown only if content exists. The list of figures, list of listings, and list of tables are displayed only if they contain at least one element, preventing empty sections in the document.
+
 ## 0.1.8
 
 > [!TIP]
