@@ -72,6 +72,10 @@
   bibliography: value(
     de: "Literaturverzeichnis",
     en: "Bibliography"
+  ),
+  chapter: value(
+    de: "Kapitel",
+    en: "Chapter"
   )
 )
 

@@ -204,7 +204,7 @@
     #show heading.where(level: 2): set heading(numbering: "1.1")
     #show heading.where(level: 3): set heading(numbering: "1.1.1")
     #show heading.where(level: 4): set heading(numbering: "1.1.1.1")
-    #show heading: set heading(supplement: [Kapitel])
+    #show heading: set heading(supplement: [#translations.chapter])
 
     #let variables-keys = variables-list.map(e => e.key).filter(k => k != none).dedup()
     #show link: it => {
