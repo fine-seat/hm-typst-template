@@ -273,5 +273,6 @@
 
   pagebreak(weak: true)
 
+  heading(level: 1)[#translations.bibliography]
   bib
 }

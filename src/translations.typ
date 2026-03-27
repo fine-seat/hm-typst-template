@@ -68,6 +68,10 @@
   title: value(
     de: "Titel",
     en: "Title"
+  ),
+  bibliography: value(
+    de: "Literaturverzeichnis",
+    en: "Bibliography"
   )
 )
 

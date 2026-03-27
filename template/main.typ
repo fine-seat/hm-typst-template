@@ -21,7 +21,7 @@
   blocking: true,
   gender: "w",
   examiner-gender: "m",
-  bib: bibliography("references.bib", title: "Literaturverzeichnis"),
+  bib: bibliography("references.bib", title: none),
   abbreviations-list: abbreviations-list,
   variables-list: variables-list,
   draft: true,
