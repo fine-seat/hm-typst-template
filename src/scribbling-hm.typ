@@ -11,9 +11,8 @@
   study-group: "",
   semester: "",
   supervisors: none,
-  supervisor-gender: none,
+  examiner-gender: none,
   submission-date: none,
-  abstract-two-langs: true,
   abstract: none,
   abstract-translation: none,
   blocking: false,
@@ -24,16 +23,17 @@
   study-name: study-name.IFB,
   variables-list: none,
   print: false,
+  language: "de",
   body,
 ) = {
   if gender != none and gender not in ("m", "w", "d") {
     panic("Gender must be one of: 'm', 'w', 'd', or none")
   }
-  if supervisor-gender != none and supervisor-gender not in ("m", "w", "d") {
+  if examiner-gender != none and examiner-gender not in ("m", "w", "d") {
     panic("Supervisor's gender must be one of: 'm', 'w', 'd', or none")
   }
 
-  let lang = "de"
+  import "translations.typ": *
 
   state("draft", draft).update(draft)
 
@@ -68,8 +68,8 @@
   show heading.where(level: 5): set text(weight: "semibold")
 
   set text(
-    lang: lang,
-    region: lang,
+    lang: language,
+    region: language,
   )
 
   set list(
@@ -107,13 +107,13 @@
     title-translation: title-translation,
     author: author,
     supervisors: supervisors,
-    date: custom-date-format(submission-date, lang: lang, pattern: "long"),
+    date: custom-date-format(submission-date, lang: language, pattern: "long"),
     id: student-id,
     gender: gender,
-    supervisor-gender: supervisor-gender,
+    examiner-gender: examiner-gender,
     draft: draft,
     study-info: info,
-    date-today: custom-date-format(datetime.today(), lang: lang, pattern: "long"),
+    date-today: custom-date-format(datetime.today(), lang: language, pattern: "long"),
   )
   if (print) { pagebreak(to: "odd") }
   // ---
@@ -139,12 +139,12 @@
   import "components/declaration.typ": declaration
 
   declaration(
-    submission-date: custom-date-format(submission-date, lang: lang, pattern: "long"),
+    submission-date: custom-date-format(submission-date, lang: language, pattern: "long"),
     name: author,
     student-id: student-id,
     semester: semester,
     study-group: study-group,
-    birth-date: if (birth-date != none) { custom-date-format(birth-date, lang: lang, pattern: "dd.MM.yyyy") },
+    birth-date: if (birth-date != none) { custom-date-format(birth-date, lang: language, pattern: "dd.MM.yyyy") },
     thesis-type: info.thesis-type
   )
 
@@ -187,7 +187,6 @@
     #import "components/abstract.typ": abstract-page
 
     #abstract-page(
-      two-langs: abstract-two-langs,
       abstract: abstract,
       abstract-translation: abstract-translation,
     )
@@ -195,7 +194,7 @@
 
     #set page(
       numbering: "1",
-      header: if (enable-header) { formatted-header(draft: draft, lang: lang, print: print) },
+      header: if (enable-header) { formatted-header(draft: draft, lang: language, print: print) },
       footer: formatted-footer(print: print, numbering: "1"),
     )
 
@@ -241,7 +240,7 @@
   }
   counter(page).update(1)
 
-  heading([Abkürzungsverzeichnis], level: 1)
+  heading([#translations.abbreviations], level: 1)
 
   print-glossary(abbreviations-list, deduplicate-back-references: true, minimum-refs: 2, shorthands: (
     "plural",
@@ -254,19 +253,19 @@
 
   pagebreak(weak: true)
 
-  heading(level: 1)[Abbildungsverzeichnis]
+  heading(level: 1)[#translations.list-of-figures]
   outline(
     target: figure.where(kind: image),
     title: none
   )
 
-  heading(level: 1)[Listings]
+  heading(level: 1)[#translations.list-of-listings]
   outline(
     target: figure.where(kind: raw),
     title: none,
   )
 
-  heading(level: 1)[Tabellenverzeichnis]
+  heading(level: 1)[#translations.list-of-tables]
   outline(
     target: figure.where(kind: table),
     title: none,

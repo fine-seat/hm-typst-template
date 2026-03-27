@@ -1,4 +1,5 @@
-#import "@preview/scribbling-hm:0.1.8": *
+// #import "@preview/scribbling-hm:0.1.8": *
+#import "../lib.typ": *
 
 #import "abbreviations.typ": abbreviations-list
 #import "variables.typ": variables-list
@@ -6,6 +7,7 @@
 #show: thesis.with(
   title: lorem(15),
   title-translation: lorem(12),
+  language: "en",
   study-name: study-name.IFB,
   submission-date: datetime.today(),
   student-id: 12345678,
@@ -14,12 +16,11 @@
   semester: "WiSe 2025/26",
   study-group: "IF7",
   birth-date: datetime(year: 2000, day: 1, month: 1),
-  abstract-two-langs: true,
   abstract: none,
   abstract-translation: none,
   blocking: true,
   gender: "w",
-  supervisor-gender: "m",
+  examiner-gender: "m",
   bib: bibliography("references.bib", title: "Literaturverzeichnis"),
   abbreviations-list: abbreviations-list,
   variables-list: variables-list,

@@ -1,5 +1,6 @@
 #import "../utils.typ": *
 #import "../study-info.typ": *
+#import "../translations.typ": *
 
 #let titlepage(
   title: none,
@@ -10,7 +11,7 @@
   supervisors: none,
   study-info: none,
   gender: none,
-  supervisor-gender: none,
+  examiner-gender: none,
   draft: true,
   date-today: none,
 ) = {
@@ -19,30 +20,32 @@
 
     #image("../media/HM_logo.png", width: 45%)
 
-    Hochschule München \
+    #translations.hm \
     #study-info.fk
 
     #v(2cm)
 
-    #text(size: 14pt)[#study-info.thesis-type \ zur Erlangung des akademischen Grades \ #study-info.degree]
+    #text(size: 14pt)[#study-info.thesis-type \ #translations.for-the-degree-of \ #study-info.degree]
 
     #text(size: 16pt, weight: "bold", if (title != none) {
       title
     } else {
-      todo[Titel]
+      todo[#translations.title]
     })
 
-    #text(size: 14pt, if (title-translation != none) {
-      title-translation
-    } else { todo[Title] })
+    #context {
+      text(size: 14pt, if (title-translation != none) {
+        title-translation
+      } else { if (text.lang == "de") { todo[Title] } })
+    }
 
     #v(0.5cm)
 
     #text(size: 14pt)[
       #if draft {
         text(hm-color)[
-          ENTWURF \
-          Stand: #date-today]
+          #translations.draft \
+          #translations.as-of: #date-today]
       } else {
         [
           Abgabetermin \
@@ -56,36 +59,22 @@
     #let gendered-author = ""
 
     #if (author != none) {
-      if gender == "m" {
-        [Autor: ]
-      } else if gender == "w" {
-        [Autorin: ]
-      } else if gender == "d" or gender == none {
-        [Verfassende Person: ]
-      }
-      author
-    } else { todo[Autor] }
+      [#author-translation(gender: gender): #author]
+    } else { todo[#author-translation("m")] }
 
-    #if (id != none) { [Matrikelnummer: #id] } else { todo[Matrikelnummer] }
+    #if (id != none) { [#translations.student-id: #id] } else { todo[Matrikelnummer] }
 
-    Studiengang: #study-info.name
+    #translations.study-program: #study-info.name
 
     #if (supervisors != none) {
       if type(supervisors) == array [
-        [Prüfende Personen:]
+        [#translations.examiners:]
         #supervisors.join(", ")
       ] else [
-        #if supervisor-gender == "m" {
-          [Prüfer:]
-        } else if supervisor-gender == "w" {
-          [Prüferin:]
-        } else if supervisor-gender == "d" or supervisor-gender == none {
-          [Prüfende Person:]
-        }
-        #supervisors
+        #examiner-translation(gender: examiner-gender): #supervisors
       ]
     } else {
-      todo[Prüfer]
+      todo[#examiner-translation("m")]
     }
 
   ])

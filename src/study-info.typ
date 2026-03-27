@@ -1,3 +1,5 @@
+#import "translations.typ": value
+
 #let study-name = (
   IFB: "Informatik Bachelor",
   IGM: "Informatik Master",
@@ -83,7 +85,10 @@
 )
 
 #let fk = (
-  "07": "Fakultät für Informatik und Mathematik",
+  "07": value(
+    de: "Fakultät für Informatik und Mathematik",
+    en: "Department of Computer Science and Mathematics"
+  ),
   "21": "Munich Center for Digital Sciences and AI",
 )
 
@@ -93,13 +98,22 @@
 )
 
 #let study-name-long = (
-  "IF": "Informatik",
+  "IF": value(
+    de: "Informatik",
+    en: "Computer Science"
+  ),
   "WI": "Wirtschaftsinformatik",
 )
 
 #let thesis-type = (
-  "B": "Bachelorarbeit",
-  "M": "Masterarbeit",
+  "B": value(
+    de: "Bachelorarbeit",
+    en: "Bachelor's thesis"
+  ),
+  "M": value(
+    de: "Masterarbeit",
+    en: "Master's thesis"
+  ),
 )
 
 #let get-study-info(name) = {

@@ -1,3 +1,4 @@
+#import "translations.typ": *
 #import "utils.typ": *
 
 #let formatted-header(
@@ -34,7 +35,7 @@
       let header-draft = {
         if draft {
           [
-            #text(hm-color)[ENTWURF -- Stand: #custom-date-format(datetime.today(), lang: lang, pattern: "dd.MM.y")]
+            #text(hm-color)[#translations.draft -- #translations.as-of: #custom-date-format(datetime.today(), lang: lang, pattern: "dd.MM.y")]
           ]
         }
       }
