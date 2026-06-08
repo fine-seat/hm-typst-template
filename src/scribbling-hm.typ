@@ -297,12 +297,32 @@
 
   pagebreak(weak: true)
 
-  counter(heading).update(0)
-  show heading.where(level: 1): set heading(numbering: "A")
-  show heading.where(level: 2): set heading(numbering: "A.1")
+  // Appendix
+  let in-appendix(body) = {
+    counter(heading).update(0)
 
-  if (appendix != none and appendix != []) {
-    heading(level: 1)[#translations.appendix]
-    appendix
+    let app-numbering = (..n) => {
+      let nums = n.pos()
+      if nums.len() == 1 {
+        translations.appendix + " " + numbering("A", ..nums)
+      } else {
+        numbering("A.1", ..nums)
+      }
+    }
+
+    show heading: set heading(numbering: app-numbering, supplement: [#translations.appendix])
+    show heading.where(level: 2): set heading(outlined: false)
+    show heading.where(level: 3): set heading(outlined: false)
+
+    show heading.where(level: 1): it => {
+      pagebreak(weak: true)
+      it
+    }
+
+    body
+  }
+
+  if appendix != none {
+    in-appendix(appendix)
   }
 }

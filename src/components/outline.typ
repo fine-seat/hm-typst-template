@@ -5,6 +5,6 @@
 
   outline(
     depth: 3,
-    indent: auto
+    indent: 1.2em,
   )
 }
