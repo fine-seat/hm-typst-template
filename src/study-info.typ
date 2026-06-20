@@ -7,7 +7,7 @@
   ICB: "Scientific Computing Bachelor",
   ITM: "IT-Sicherheit Master",
   ISM: "Stochastic Engineering in Business and Finance",
-  IBB: "Wirtschaftsinformaik Bachelor",
+  IBB: "Wirtschaftsinformatik Bachelor",
   WDB: "Wirtschaftsinformatik - Digitales Management Bachelor",
   WTB: "Wirtschaftsinformatik - Informationstechnologie Bachelor",
   INM: "Wirtschaftsinformatik Master",
