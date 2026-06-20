@@ -1,5 +1,3 @@
-#import "translations.typ": value
-
 #let study-name = (
   IFB: "Informatik Bachelor",
   IGM: "Informatik Master",
@@ -85,7 +83,7 @@
 )
 
 #let fk = (
-  "07": value(
+  "07": (
     de: "Fakultät für Informatik und Mathematik",
     en: "Department of Computer Science and Mathematics"
   ),
@@ -98,7 +96,7 @@
 )
 
 #let study-name-long = (
-  "IF": value(
+  "IF": (
     de: "Informatik",
     en: "Computer Science"
   ),
@@ -106,26 +104,30 @@
 )
 
 #let thesis-type = (
-  "B": value(
+  "B": (
     de: "Bachelorarbeit",
     en: "Bachelor's thesis"
   ),
-  "M": value(
+  "M": (
     de: "Masterarbeit",
     en: "Master's thesis"
   ),
 )
 
-#let get-study-info(name) = {
+#let resolve(val, lang) = if type(val) == dictionary {
+  if lang == "de" { val.de } else { val.en }
+} else { val }
+
+#let get-study-info(name, lang: "de") = {
   let key = study-name.keys().at(study-name.values().position(x => x == name))
   if key in study-name {
     let info = study-info.at(key)
 
     return (
-      fk: fk.at(info.fk),
-      name: study-name-long.at(info.name, default: info.name),
+      fk: resolve(fk.at(info.fk), lang),
+      name: resolve(study-name-long.at(info.name, default: info.name), lang),
       degree: degree.at(info.degree),
-      thesis-type: thesis-type.at(info.degree.at(0)),
+      thesis-type: resolve(thesis-type.at(info.degree.at(0)), lang),
     )
   }
 }

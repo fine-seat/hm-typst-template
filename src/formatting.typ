@@ -1,10 +1,10 @@
-#import "translations.typ": *
 #import "utils.typ": *
 
 #let formatted-header(
   draft: bool,
   lang: str,
   print: bool,
+  t: none,
 ) = {
   text(context {
     let headings = query(heading.where(level: 1))
@@ -35,7 +35,7 @@
       let header-draft = {
         if draft {
           [
-            #text(hm-color)[#translations.draft -- #translations.as-of: #custom-date-format(datetime.today(), lang: lang, pattern: "dd.MM.y")]
+            #text(hm-color)[#t.draft -- #t.as-of: #custom-date-format(datetime.today(), lang: lang, pattern: "dd.MM.y")]
           ]
         }
       }
