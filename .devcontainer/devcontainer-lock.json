@@ -1,0 +1,9 @@
+{
+  "features": {
+    "ghcr.io/michidk/devcontainers-features/typst:1": {
+      "version": "1.1.0",
+      "resolved": "ghcr.io/michidk/devcontainers-features/typst@sha256:bab07dacf9464c16de6e40055a123237f8de7c4ec1165373895177a3ff649411",
+      "integrity": "sha256:bab07dacf9464c16de6e40055a123237f8de7c4ec1165373895177a3ff649411"
+    }
+  }
+}

@@ -16,4 +16,3 @@ path = "template"
 entrypoint = "main.typ"
 
 thumbnail = "main.png"
-

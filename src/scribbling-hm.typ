@@ -256,7 +256,7 @@
 
   context {
     let images = figure.where(kind: image)
-    
+
     if (query(images).len() > 0) {
       heading(level: 1)[#translations.list-of-figures]
       outline(
@@ -268,7 +268,7 @@
 
   context {
     let listings = figure.where(kind: raw)
-    
+
     if (query(listings).len() > 0) {
       heading(level: 1)[#translations.list-of-listings]
       outline(

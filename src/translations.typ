@@ -119,12 +119,12 @@
     #let author = if gender == "w" [der Verfasserin] else if gender == "m" [des Verfassers] else [des Verfassenden]
 
     Die vorliegende #thesis-type beinhaltet vertrauliche Informationen und darf durch Dritte, mit Ausnahme der Gutachter und berechtigten Beteiligten im Prüfungsverfahren, ohne ausdrückliche schriftliche Zustimmung #author nicht eingesehen werden.
-    
+
     Insbesondere ist eine Vervielfältigung, weitere Verwendung und eine Veröffentlichung der #thesis-type ohne ausdrückliche schriftliche Genehmigung #author, auch auszugsweise, untersagt.
   ],
   en: [
     The present #thesis-type contains confidential information and may not be accessed by third parties, with the exception of the examiners and authorized participants in the examination process, without the express written consent of the author.
-    
+
     In particular, any reproduction, further use, or publication of the #thesis-type, in whole or in part, is prohibited without the express written permission of the author.
   ]
 )

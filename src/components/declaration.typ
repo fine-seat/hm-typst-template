@@ -8,7 +8,7 @@
   student-id: none,
   submission-date: none,
   thesis-type: none
-) = { 
+) = {
   v(1fr)
 
   if name != none and study-group != none and semester != none and student-id != none {
