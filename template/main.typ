@@ -23,7 +23,7 @@
   bib: bibliography("references.bib", title: none),
   abbreviations-list: abbreviations-list,
   variables-list: variables-list,
-  appendix: include "appendix.typ",
+  appendix: [#include "appendix.typ"],
   draft: true,
   print: false
 )
