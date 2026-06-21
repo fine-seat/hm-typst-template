@@ -1,6 +1,5 @@
 #import "../utils.typ": *
 #import "../study-info.typ": *
-#import "../translations.typ": *
 
 #let titlepage(
   title: none,
@@ -14,23 +13,24 @@
   examiner-gender: none,
   draft: true,
   date-today: none,
+  t: none,
 ) = {
   align(center, [
     #v(1cm)
 
     #image("../media/HM_logo.png", width: 45%)
 
-    #translations.hm \
+    #t.hm \
     #study-info.fk
 
     #v(2cm)
 
-    #text(size: 14pt)[#study-info.thesis-type \ #translations.for-the-degree-of \ #study-info.degree]
+    #text(size: 14pt)[#study-info.thesis-type \ #t.for-the-degree-of \ #study-info.degree]
 
     #text(size: 16pt, weight: "bold", if (title != none) {
       title
     } else {
-      todo[#translations.title]
+      todo[#t.title]
     })
 
     #context {
@@ -44,8 +44,8 @@
     #text(size: 14pt)[
       #if draft {
         text(hm-color)[
-          #translations.draft \
-          #translations.as-of: #date-today]
+          #t.draft \
+          #t.as-of: #date-today]
       } else {
         [
           Abgabetermin \
@@ -56,25 +56,23 @@
 
     #v(1fr)
 
-    #let gendered-author = ""
-
     #if (author != none) {
-      [#author-translation(gender: gender): #author]
-    } else { todo[#author-translation("m")] }
+      [#(t.author)(gender: gender): #author]
+    } else { todo[#(t.author)("m")] }
 
-    #if (id != none) { [#translations.student-id: #id] } else { todo[Matrikelnummer] }
+    #if (id != none) { [#t.student-id: #id] } else { todo[Matrikelnummer] }
 
-    #translations.study-program: #study-info.name
+    #t.study-program: #study-info.name
 
     #if (supervisors != none) {
       if type(supervisors) == array [
-        [#translations.examiners:]
+        [#t.examiners:]
         #supervisors.join(", ")
       ] else [
-        #examiner-translation(gender: examiner-gender): #supervisors
+        #(t.examiner)(gender: examiner-gender): #supervisors
       ]
     } else {
-      todo[#examiner-translation("m")]
+      todo[#(t.examiner)("m")]
     }
 
   ])

@@ -34,7 +34,8 @@
     panic("Supervisor's gender must be one of: 'm', 'w', 'd', or none")
   }
 
-  import "translations.typ": *
+  import "translations.typ": create-translations
+  let t = create-translations(language)
 
   state("draft", draft).update(draft)
 
@@ -98,7 +99,7 @@
   show raw.where(block: true): set text(0.9em)
 
   import "study-info.typ": get-study-info
-  let info = get-study-info(study-name)
+  let info = get-study-info(study-name, lang: language)
 
   // titlepage
   import "components/titlepage.typ": titlepage
@@ -115,6 +116,7 @@
     draft: draft,
     study-info: info,
     date-today: custom-date-format(datetime.today(), lang: language, pattern: "long"),
+    t: t,
   )
   if (print) { pagebreak(to: "odd") }
   // ---
@@ -125,7 +127,8 @@
 
     blocking-notice(
       gender: gender,
-      thesis-type: info.thesis-type
+      thesis-type: info.thesis-type,
+      t: t,
     )
 
     pagebreak()
@@ -146,7 +149,8 @@
     semester: semester,
     study-group: study-group,
     birth-date: if (birth-date != none) { custom-date-format(birth-date, lang: language, pattern: "dd.MM.yyyy") },
-    thesis-type: info.thesis-type
+    thesis-type: info.thesis-type,
+    t: t,
   )
 
   pagebreak()
@@ -195,7 +199,7 @@
 
     #set page(
       numbering: "1",
-      header: if (enable-header) { formatted-header(draft: draft, lang: language, print: print) },
+      header: if (enable-header) { formatted-header(draft: draft, lang: language, print: print, t: t) },
       footer: formatted-footer(print: print, numbering: "1"),
     )
 
@@ -205,7 +209,7 @@
     #show heading.where(level: 2): set heading(numbering: "1.1")
     #show heading.where(level: 3): set heading(numbering: "1.1.1")
     #show heading.where(level: 4): set heading(numbering: "1.1.1.1")
-    #show heading: set heading(supplement: [#translations.chapter])
+    #show heading: set heading(supplement: t.chapter)
 
     #let variables-keys = variables-list.map(e => e.key).filter(k => k != none).dedup()
     #show link: it => {
@@ -241,7 +245,7 @@
   }
   counter(page).update(1)
 
-  heading([#translations.abbreviations], level: 1)
+  heading(t.abbreviations, level: 1)
 
   print-glossary(abbreviations-list, deduplicate-back-references: true, minimum-refs: 2, shorthands: (
     "plural",
@@ -258,7 +262,7 @@
     let images = figure.where(kind: image)
 
     if (query(images).len() > 0) {
-      heading(level: 1)[#translations.list-of-figures]
+      heading(level: 1)[#t.list-of-figures]
       outline(
         target: images,
         title: none,
@@ -270,7 +274,7 @@
     let listings = figure.where(kind: raw)
 
     if (query(listings).len() > 0) {
-      heading(level: 1)[#translations.list-of-listings]
+      heading(level: 1)[#t.list-of-listings]
       outline(
         target: listings,
         title: none,
@@ -282,7 +286,7 @@
     let tables = figure.where(kind: table)
 
     if (query(tables).len() > 0) {
-      heading(level: 1)[#translations.list-of-tables]
+      heading(level: 1)[#t.list-of-tables]
       outline(
         target: tables,
         title: none,
@@ -292,7 +296,7 @@
 
   pagebreak(weak: true)
 
-  heading(level: 1)[#translations.bibliography]
+  heading(level: 1)[#t.bibliography]
   bib
 
   pagebreak(weak: true)
@@ -302,7 +306,7 @@
   show heading.where(level: 2): set heading(numbering: "A.1")
 
   if (appendix != none and appendix != []) {
-    heading(level: 1)[#translations.appendix]
+    heading(level: 1)[#t.appendix]
     appendix
   }
 }
