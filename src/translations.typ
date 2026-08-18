@@ -67,6 +67,10 @@
     de: "Anhang",
     en: "Appendix",
   ),
+  submission-date: (
+    de: "Abgabetermin",
+    en: "Submission date",
+  ),
 )
 
 #let create-translations(lang) = {

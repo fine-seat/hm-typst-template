@@ -48,7 +48,7 @@
           #t.as-of: #date-today]
       } else {
         [
-          Abgabetermin \
+          #t.submission-date \
           #date
         ]
       }
