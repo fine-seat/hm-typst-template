@@ -22,9 +22,9 @@
   abbreviations-list: none,
   study-name: study-name.IFB,
   variables-list: none,
-  print: false,
   language: "de",
   appendix: none,
+  layout-mode: "screen",
   body,
 ) = {
   if gender != none and gender not in ("m", "w", "d") {
@@ -33,6 +33,13 @@
   if examiner-gender != none and examiner-gender not in ("m", "w", "d") {
     panic("Supervisor's gender must be one of: 'm', 'w', 'd', or none")
   }
+  if layout-mode not in ("screen", "duplex", "bound") {
+    panic("layout-mode must be one of: 'screen', 'duplex', 'bound'")
+  }
+
+  let is-duplex = layout-mode == "duplex"
+  let is-bound = layout-mode == "bound"
+  let force-odd = is-duplex
 
   import "translations.typ": create-translations
   let t = create-translations(language)
@@ -43,7 +50,13 @@
 
   set page(
     paper: "a4",
-    margin: if (print) { (inside: 3cm, outside: 2cm) } else { 2.5cm },
+    margin: if is-duplex {
+      (inside: 3cm, outside: 2cm)
+    } else if is-bound {
+      (left: 3cm, right: 2cm)
+    } else {
+      2.5cm
+    },
     number-align: right,
     binding: left,
   )
@@ -118,7 +131,7 @@
     date-today: custom-date-format(datetime.today(), lang: language, pattern: "long"),
     t: t,
   )
-  if (print) { pagebreak(to: "odd") }
+  if (force-odd) { pagebreak(to: "odd") }
   // ---
 
   // blocking notice
@@ -132,9 +145,8 @@
     )
 
     pagebreak()
-    if (print) { pagebreak(to: "odd") }
+    if (force-odd) { pagebreak(to: "odd") }
   }
-
 
   // ---
 
@@ -155,14 +167,14 @@
 
   pagebreak()
 
-  if (print) { pagebreak(to: "odd") }
+  if (force-odd) { pagebreak(to: "odd") }
 
   // ---
 
   import "formatting.typ": formatted-footer, formatted-header
   set page(
     numbering: "i",
-    footer: formatted-footer(print: print, numbering: "i"),
+    footer: formatted-footer(print: is-duplex, numbering: "i"),
   )
   counter(page).update(1)
 
@@ -176,7 +188,7 @@
     // pagebreak before every level 1 heading
     #show heading.where(level: 1): it => {
       pagebreak(weak: true)
-      if (print) {
+      if (force-odd) {
         set page(footer: none, header: none)
         pagebreak(to: "odd")
         let previous = query(selector(heading.where(level: 1, numbering: "1")).before(here()))
@@ -199,8 +211,8 @@
 
     #set page(
       numbering: "1",
-      header: if (enable-header) { formatted-header(draft: draft, lang: language, print: print, t: t) },
-      footer: formatted-footer(print: print, numbering: "1"),
+      header: if (enable-header) { formatted-header(draft: draft, lang: language, print: is-duplex, t: t) },
+      footer: formatted-footer(print: is-duplex, numbering: "1"),
     )
 
     #counter(page).update(1)
@@ -227,20 +239,20 @@
     #body
   ]
 
-  if print {
+  if force-odd {
     set page(footer: none)
     pagebreak(to: "odd", weak: true)
   }
 
   set page(
     header: none,
-    footer: formatted-footer(print: print, numbering: "I"),
+    footer: formatted-footer(print: is-duplex, numbering: "I"),
     numbering: "I",
   )
 
   show heading.where(level: 1): set heading(numbering: none)
 
-  if print {
+  if force-odd {
     pagebreak(to: "odd", weak: true)
   }
   counter(page).update(1)
