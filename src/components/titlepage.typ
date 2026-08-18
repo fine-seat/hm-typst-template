@@ -56,24 +56,41 @@
 
     #v(1fr)
 
-    #if (author != none) {
-      [#(t.author)(gender: gender): #author]
-    } else { todo[#(t.author)("m")] }
+    #grid(
+      columns: (auto, auto),
+      row-gutter: 1em,
+      column-gutter: 1.5em,
+      align: (right, left),
 
-    #if (id != none) { [#t.student-id: #id] } else { todo[Matrikelnummer] }
+      [#(t.author)(gender: gender)], [#if (author != none) { author } else { todo[#(t.author)("m")] }],
 
-    #t.study-program: #study-info.name
+      [#t.student-id], [#if (id != none) { id } else { todo[Matrikelnummer] }],
 
-    #if (supervisors != none) {
-      if type(supervisors) == array [
-        [#t.examiners:]
-        #supervisors.join(", ")
-      ] else [
-        #(t.examiner)(gender: examiner-gender): #supervisors
-      ]
-    } else {
-      todo[#(t.examiner)("m")]
-    }
+      [#t.study-program], [#study-info.name],
+
+      [
+        #if (supervisors != none) {
+          if type(supervisors) == array {
+            t.examiners
+          } else {
+            (t.examiner)(gender: examiner-gender)
+          }
+        } else {
+          (t.examiner)("m")
+        }
+      ],
+      [
+        #if (supervisors != none) {
+          if type(supervisors) == array {
+            supervisors.join("\n")
+          } else {
+            supervisors
+          }
+        } else {
+          todo[#(t.examiner)("m")]
+        }
+      ],
+    )
 
   ])
   pagebreak()
