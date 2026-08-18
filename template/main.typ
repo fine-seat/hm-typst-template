@@ -1,4 +1,4 @@
-#import "@preview/scribbling-hm:0.1.9": *
+#import "@preview/scribbling-hm:0.1.10": *
 
 #import "abbreviations.typ": abbreviations-list
 #import "variables.typ": variables-list
@@ -11,7 +11,7 @@
   submission-date: datetime.today(),
   student-id: 12345678,
   author: "Erika Mustermann",
-  supervisors: "Prof. Dr. Max Mustermann",
+  supervisors: ("Prof. Dr. Max Mustermann"),
   semester: "WiSe 2025/26",
   study-group: "IF7",
   birth-date: datetime(year: 2000, day: 1, month: 1),
@@ -25,7 +25,7 @@
   variables-list: variables-list,
   appendix: include "appendix.typ",
   draft: true,
-  print: false
+  layout-mode: "bound"
 )
 
 = Section

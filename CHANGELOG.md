@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.1.10
+
+> [!TIP]
+> The `print` parameter has been replaced with `layout-mode` to support three output modes:
+> - `"screen"`: default single-sided layout
+> - `"duplex"`: mirrored inner/outer margins and mirrored headers/footers for double-sided printing
+> - `"bound"`: single-sided layout with wider left margin on every page (binding-friendly)
+> ```typst
+> #show: thesis.with(
+>   // ...
+>   layout-mode: "duplex",
+> )
+> ```
+
+> [!NOTE]
+> The title page metadata block has been redesigned into a two-column grid for improved readability and alignment (label/value layout for author, student ID, study program, and examiners).
+
+> [!NOTE]
+> Translation handling was refactored to avoid lazy-context translation issues by passing resolved translations (`t`) into components.
+
+> [!NOTE]
+> The submission date label on the title page is now fully translated via `t.submission-date` (German and English).
+
+- Fix typo in study program name: `Wirtschaftsinformaik` -> `Wirtschaftsinformatik`
+
 ## 0.1.9
 
 > [!TIP]

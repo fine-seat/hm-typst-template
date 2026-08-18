@@ -46,7 +46,7 @@ After initialization, open ``main.typ``, fill in the properties below, and start
 | `bib` | Bibliography file reference |
 | `abbreviations-list` | Abbreviations for the glossary |
 | `variables-list` | Pre-defined variables |
-| `print` | Enable print view (default: `false`) |
+| `layout-mode` | Page layout mode (`"screen"`, `"duplex"`, or `"bound"`, default: `"screen"`) |
 
 ### Draft mode
 
@@ -66,9 +66,22 @@ The `variables-list` is helpful if you want to pre-define frequently-used phrase
 IMPORTANT:\
 Your keys must be unique across all files (``abbreviations.typ`` and ``variables.typ``)
 
-### Print view
+### Layout modes
 
-To get a print view, set `print` to true. This adds empty pages, optimizing binding and two sided printing.
+Use `layout-mode` to choose how pages are laid out:
+
+- `"screen"` (default): single-sided layout with symmetric margins (`2.5cm`)
+- `"duplex"`: double-sided print layout with mirrored inner/outer margins (`inside: 3cm`, `outside: 2cm`) and mirrored headers/footers
+- `"bound"`: single-sided layout with a wider left margin on every page (`left: 3cm`, `right: 2cm`)
+
+Example:
+
+```typst
+#show: thesis.with(
+	// ...
+	layout-mode: "duplex",
+)
+```
 
 ### Study name
 
