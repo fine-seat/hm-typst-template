@@ -6,6 +6,8 @@
   student-id: none,
   submission-date: none,
   thesis-type: none,
+  ai-used: false,
+  declaration-text: none,
   t: none,
 ) = {
   v(1fr)
@@ -21,7 +23,11 @@
   v(1cm)
 
   [
-    #(t.declaration-of-independent-writing)(thesis-type: thesis-type)
+    #if declaration-text != none {
+      declaration-text
+    } else {
+      (t.declaration-of-independent-writing)(thesis-type: thesis-type, ai-used: ai-used)
+    }
   ]
 
   v(2cm)

@@ -15,6 +15,8 @@
   submission-date: none,
   abstract: none,
   abstract-translation: none,
+  ai-used: false,
+  declaration-text: none,
   blocking: false,
   enable-header: true,
   draft: true,
@@ -162,6 +164,8 @@
     study-group: study-group,
     birth-date: if (birth-date != none) { custom-date-format(birth-date, lang: language, pattern: "dd.MM.yyyy") },
     thesis-type: info.thesis-type,
+    ai-used: ai-used,
+    declaration-text: declaration-text,
     t: t,
   )
 
