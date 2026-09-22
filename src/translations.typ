@@ -107,15 +107,27 @@
     }
   }
 
-  t.declaration-of-independent-writing = (thesis-type: none) => {
+  t.declaration-of-independent-writing = (thesis-type: none, ai-used: false) => {
     if lang == "de" {
-      [
-        Hiermit erkläre ich, dass ich die #thesis-type selbständig verfasst, noch nicht anderweitig für Prüfungszwecke vorgelegt, keine anderen als die angegebenen Quellen oder Hilfsmittel benutzt sowie wörtliche und sinngemäße Zitate als solche gekennzeichnet habe.
-      ]
+      if ai-used {
+        [
+          Hiermit versichere ich, dass ich die vorliegende #thesis-type eigenständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet habe. Alle übernommenen Inhalte sowie mit Unterstützung von KI generierten Inhalte wurden entsprechend den anerkannten wissenschaftlichen Grundsätzen oder entsprechend der Regelungen zur Kennzeichnung von KI-Inhalten kenntlich gemacht. Ausgenommen von der Kenntlichmachung sind orthografische oder grammatikalische Korrekturen, Übersetzungen sowie nicht-sinnverändernde Verbesserungen von Formulierungen. Ich bin mir bewusst, dass mit KI generierte Texte keine Garantie für die Qualität von Inhalten und Text bieten. Daher erkläre ich, dass ich KI-Werkzeuge lediglich als Hilfsmittel genutzt habe, die von KI generierten Inhalte kritisch überprüft habe und mein eigenständiger kognitiver sowie kreativer Einfluss in dieser Arbeit überwiegt. Ich versichere, dass ich die Inhalte meiner Arbeit vollständig verstanden habe und selbstständig vertreten kann. Ich versichere, dass ich ausschließlich KI-Werkzeuge verwendet habe, deren Nutzung vom Prüfer oder der Prüferin als Hilfsmittel zugelassen wurden.
+        ]
+      } else {
+        [
+          Hiermit erkläre ich, dass ich die #thesis-type selbständig verfasst, noch nicht anderweitig für Prüfungszwecke vorgelegt, keine anderen als die angegebenen Quellen oder Hilfsmittel benutzt sowie wörtliche und sinngemäße Zitate als solche gekennzeichnet habe.
+        ]
+      }
     } else {
-      [
-        I hereby declare that I have written this #thesis-type independently, have not submitted it elsewhere for examination purposes, have used no sources or aids other than those stated, and have marked all direct and paraphrased quotations as such.
-      ]
+      if ai-used {
+        [
+          I hereby certify that I have written this #thesis-type independently and have not used any sources or resources other than those cited. All content that has been incorporated, as well as content generated with the assistance of AI, has been identified in accordance with recognized academic principles or in accordance with the regulations governing the identification of AI-generated content. Excluded from this identification requirement are spelling or grammatical corrections, translations, and improvements to phrasing that do not alter the meaning. I am aware that AI-generated texts offer no guarantee of the quality of content and text. Therefore, I declare that I have used AI tools solely as aids, that I have critically reviewed the AI-generated content, and that my independent cognitive and creative influence predominates in this work. I affirm that I have fully understood the content of my work and can defend it independently. I affirm that I have used only AI tools whose use has been approved by the examiner as aids.
+        ]
+      } else {
+        [
+          I hereby declare that I have written this #thesis-type independently, have not submitted it elsewhere for examination purposes, have used no sources or aids other than those stated, and have marked all direct and paraphrased quotations as such.
+        ]
+      }
     }
   }
 
