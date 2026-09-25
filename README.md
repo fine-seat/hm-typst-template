@@ -4,9 +4,9 @@
 
 # scribbling-hm
 
-Unofficial thesis template for Munich University of Applied Sciences (Hochschule München).
+Unofficial thesis and report template for Munich University of Applied Sciences (Hochschule München).
 
-ℹ️ Currently supports FK07 and FK21 (MUC.DAI) theses.
+ℹ️ Currently supports FK07 and FK21 (MUC.DAI) theses and Modulararbeiten.
 
 ## Getting started
 
@@ -47,6 +47,10 @@ After initialization, open ``main.typ``, fill in the properties below, and start
 | `abbreviations-list` | Abbreviations for the glossary |
 | `variables-list` | Pre-defined variables |
 | `layout-mode` | Page layout mode (`"screen"`, `"duplex"`, or `"bound"`, default: `"screen"`) |
+| `print-abbreviations-list` | Show the abbreviations list (default: `true` when an abbreviations list is provided) |
+| `print-list-of-figures` | Show the list of figures (default: `true`) |
+| `print-list-of-listings` | Show the list of listings (default: `true`) |
+| `print-list-of-tables` | Show the list of tables (default: `true`) |
 
 ### Draft mode
 
@@ -81,6 +85,28 @@ Example:
 	// ...
 	layout-mode: "duplex",
 )
+```
+
+### Modularbeit
+
+The template also supports project documentation for a Modularbeit. Use `modularbeit-documentation` instead of `thesis` and provide a subject, the authors, and a project description:
+
+```typst
+#show: modularbeit-documentation.with(
+	subject: "Graphentheorie",
+	authors: ("Erika Mustermann", "Max Mustermann"),
+	project-description: [Gruppe x - Thema x \\ Traveling Salesman Problem],
+	study-name: study-name.IFB,
+	draft: false,
+)
+```
+
+Modularbeiten do not include the thesis declaration, abstract, or blocking notice. Lists of abbreviations, figures, listings, and tables can be disabled individually with the corresponding `print-*` parameters. A complete example is available in [`examples/modularbeit.typ`](examples/modularbeit.typ).
+
+The repository contains complete examples for both document types. Compile them from the `examples` directory with:
+
+```bash
+make
 ```
 
 ### Study name

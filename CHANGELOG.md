@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.11
+
+> [!TIP]
+> Modularbeit documentation is now supported through the new `modularbeit-documentation` function. It provides a dedicated title page for the subject, project description, and authors, without thesis-specific sections such as the declaration, abstract, or blocking notice.
+> ```typst
+> #show: modularbeit-documentation.with(
+>   subject: "Graphentheorie",
+>   authors: ("Erika Mustermann", "Max Mustermann"),
+>   project-description: [Gruppe x - Thema x \\ Traveling Salesman Problem],
+> )
+> ```
+
+> [!NOTE]
+> The lists of abbreviations, figures, listings, and tables can now be enabled or disabled independently using the corresponding `print-*` parameters. Empty abbreviation and variable lists are handled without registering an empty glossary.
+
+> [!NOTE]
+> Complete thesis and Modularbeit examples were added under `examples/`, including a `Makefile` for compiling both PDFs.
+
 ## 0.1.10
 
 > [!TIP]
