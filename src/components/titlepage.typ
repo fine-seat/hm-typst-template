@@ -1,7 +1,7 @@
 #import "../utils.typ": *
 #import "../study-info.typ": *
 
-#let titlepage(
+#let thesis-titlepage(
   title: none,
   title-translation: none,
   date: none,
@@ -91,6 +91,61 @@
         }
       ],
     )
+
+  ])
+  pagebreak()
+}
+
+#let modularbeit-titlepage(
+  subject: none,
+  project-description: none,
+  authors: (),
+  draft: true,
+  date-today: none,
+  study-info: none,
+  t: none,
+) = {
+  align(center, [
+    #v(1cm)
+
+    #image("../media/HM_logo.png", width: 45%)
+
+    #t.hm \
+    #study-info.fk
+
+    #v(2cm)
+
+    #text(size: 16pt, weight: "bold", if (subject != none) {
+      subject
+    } else {
+      todo[#t.subject]
+    })
+
+    #text(size: 14pt)[#t.project-documentation]
+
+    #project-description
+
+    #v(0.5cm)
+
+    #if draft {
+      text(hm-color)[
+        #t.draft \
+        #t.as-of: #date-today]
+    } else {
+      [
+        #t.as-of: #date-today
+      ]
+    }
+
+    #v(1fr)
+
+    #if (authors != none) {
+      if type(authors) == array {
+        authors.join("\n")
+      } else {
+        authors
+      }
+    }
 
   ])
   pagebreak()

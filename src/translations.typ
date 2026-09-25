@@ -71,6 +71,14 @@
     de: "Abgabetermin",
     en: "Submission date",
   ),
+  subject: (
+    de: "Fach",
+    en: "Subject"
+  ),
+  project-documentation: (
+    de: "Projektdokumentation",
+    en: "Project documentation"
+  )
 )
 
 #let create-translations(lang) = {
