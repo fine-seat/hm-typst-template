@@ -1,5 +1,5 @@
 #import "utils.typ": *
-#import "study-info.typ": study-name
+#import "study-info.typ": study-name, major-name
 
 #let _document(
   title: none,
@@ -32,6 +32,7 @@
   print-list-of-listings: true,
   print-list-of-tables: true,
   print-list-of-figures: true,
+  major: none,
   body,
 ) = {
   if gender != none and gender not in ("m", "w", "d") {
@@ -155,6 +156,23 @@
       draft: draft,
       study-info: info,
       date-today: custom-date-format(datetime.today(), lang: language, pattern: "long"),
+      t: t,
+    )
+  } else if document-type == "hauptseminar" {
+    import "components/titlepage.typ": hauptseminar-paper-titlepage
+
+    hauptseminar-paper-titlepage(
+      title: title,
+      author: author,
+      supervisors: supervisors,
+      date: custom-date-format(submission-date, lang: language, pattern: "long"),
+      id: student-id,
+      gender: gender,
+      examiner-gender: examiner-gender,
+      draft: draft,
+      study-info: info,
+      date-today: custom-date-format(datetime.today(), lang: language, pattern: "long"),
+      major: major,
       t: t,
     )
   }
@@ -467,6 +485,53 @@
     subject: subject,
     project-description: project-description,
     print-abbreviations-list: if (abbreviations-list != none) { print-abbreviations-list } else { false },
+    print-list-of-listings: print-list-of-listings,
+    print-list-of-tables: print-list-of-tables,
+    print-list-of-figures: print-list-of-figures,
+    body,
+  )
+}
+
+#let hauptseminar-paper(
+  author: none,
+  title: none,
+  draft: true,
+  bib: none,
+  language: "de",
+  study-name: study-name.IGM,
+  submission-date: none,
+  abbreviations-list: none,
+  variables-list: none,
+  layout-mode: "screen",
+  student-id: none,
+  supervisors: none,
+  gender: none,
+  examiner-gender: none,
+  appendix: none,
+  major: major-name.EC,
+  print-list-of-listings: true,
+  print-list-of-tables: true,
+  print-list-of-figures: true,
+  body,
+) = {
+  _document(
+    document-type: "hauptseminar",
+    author: author,
+    title: title,
+    draft: draft,
+    bib: bib,
+    language: language,
+    study-name: study-name,
+    submission-date: submission-date,
+    abbreviations-list: abbreviations-list,
+    variables-list: variables-list,
+    layout-mode: layout-mode,
+    student-id: student-id,
+    supervisors: supervisors,
+    gender: gender,
+    examiner-gender: examiner-gender,
+    appendix: none,
+    major: major,
     print-list-of-listings: print-list-of-listings,
     print-list-of-tables: print-list-of-tables,
     print-list-of-figures: print-list-of-figures,

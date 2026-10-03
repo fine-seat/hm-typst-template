@@ -78,6 +78,10 @@
   project-documentation: (
     de: "Projektdokumentation",
     en: "Project documentation"
+  ),
+  seminar: (
+    de: "Hauptseminar",
+    en: "Advanced Seminar in"
   )
 )
 
