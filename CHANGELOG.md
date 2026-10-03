@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.12
+
+> [!TIP]
+> Added a dedicated `hauptseminar-paper` template for seminar papers. It includes a seminar-specific title page, supports the computer science `major` parameter for the subject area, and is ready for default HM title-page documentation and bibliography setup.
+> ```typst
+> #show: hauptseminar-paper.with(
+>   title: "Titel des Hauptseminars",
+>   study-name: study-name.IFB,
+>   author: "Erika Mustermann",
+>   supervisors: "Prof. Dr. Max Mustermann",
+>   submission-date: datetime.today(),
+>   major: major-name.AISE,
+> )
+> ```
+
+> [!NOTE]
+> The `examples/` directory now includes a `hauptseminar.typ` example, and the `examples/Makefile` compiles `hauptseminar.pdf` together with the thesis and Modularbeit examples.
+
 ## 0.1.11
 
 > [!TIP]

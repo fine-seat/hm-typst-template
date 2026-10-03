@@ -6,7 +6,7 @@
 
 Unofficial thesis and report template for Munich University of Applied Sciences (Hochschule München).
 
-ℹ️ Currently supports FK07 and FK21 (MUC.DAI) theses and Modulararbeiten.
+ℹ️ Currently supports FK07 and FK21 (MUC.DAI) theses, Modulararbeiten, and Hauptseminar papers.
 
 ## Getting started
 
@@ -28,6 +28,7 @@ After initialization, open ``main.typ``, fill in the properties below, and start
 | `title-translation` | English translation of the title |
 | `language` | Document language (`"de"` or `"en"`, default: `"de"`) |
 | `study-name` | Abbreviation of your course of study (default: `study-name.IFB`) |
+| `major` | Area of study for Hauptseminar papers (e.g. `major-name.AISE`) |
 | `author` | Your full name |
 | `gender` | Your gender (`"m"`, `"w"`, `"d"`, or `none`) |
 | `student-id` | Your student ID number |
@@ -101,9 +102,28 @@ The template also supports project documentation for a Modularbeit. Use `modular
 )
 ```
 
-Modularbeiten do not include the thesis declaration, abstract, or blocking notice. Lists of abbreviations, figures, listings, and tables can be disabled individually with the corresponding `print-*` parameters. A complete example is available in `examples/modularbeit.typ` on [GitHub](https://github.com/fine-seat/hm-typst-template).
+Modularbeiten do not include the thesis declaration, abstract, or blocking notice. Lists of abbreviations, figures, listings, and tables can be disabled individually with the corresponding `print-*` parameters. A complete example is available in [`examples/modularbeit.typ`](https://github.com/fine-seat/hm-typst-template/blob/main/examples/modularbeit.typ).
 
-The repository contains complete examples for both document types. Compile them from the `examples` directory with:
+### Hauptseminar
+
+The template also supports Hauptseminar papers. Use `hauptseminar-paper` and provide the course of study, authors, supervisors, and the seminar major via `major`:
+
+```typst
+#show: hauptseminar-paper.with(
+	title: "Hauptseminar paper title",
+	language: "de",
+	study-name: study-name.IGM,
+	author: "Erika Mustermann",
+	supervisors: "Prof. Dr. Max Mustermann",
+	submission-date: datetime.today(),
+	major: major-name.AISE,
+	draft: false,
+)
+```
+
+The seminar layout includes a dedicated title page for the paper and a course/major label. A complete example is available in [`examples/hauptseminar.typ`](https://github.com/fine-seat/hm-typst-template/blob/main/examples/hauptseminar.typ).
+
+The repository contains complete examples for all supported document types. Compile them from the `examples` directory with:
 
 ```bash
 make
