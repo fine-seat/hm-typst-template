@@ -7,7 +7,7 @@
 #show: hauptseminar-paper.with(
   title: lorem(15),
   language: "de",
-  study-name: study-name.IFB,
+  study-name: study-name.IGM,
   submission-date: datetime.today(),
   student-id: 12345678,
   author: "Erika Mustermann",
