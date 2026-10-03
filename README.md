@@ -4,9 +4,9 @@
 
 # scribbling-hm
 
-Unofficial thesis and report template for Munich University of Applied Sciences (Hochschule München).
+Unofficial thesis, report and paper template for Munich University of Applied Sciences (Hochschule München).
 
-ℹ️ Currently supports FK07 and FK21 (MUC.DAI) theses, Modulararbeiten, and Hauptseminar papers.
+ℹ️ Currently supports FK07 and FK21 (MUC.DAI) theses, Modulararbeiten and Computer Science (IG) Hauptseminar papers.
 
 ## Getting started
 
