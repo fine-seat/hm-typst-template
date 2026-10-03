@@ -14,6 +14,14 @@
   GSB: "Geodata Science Bachelor",
 )
 
+#let major-name = (
+  EC: "Embedded Computing",
+  ITSEC: "IT-Sicherheit",
+  SWE: "Software Engineering",
+  AISE: "AI Systems Engineering",
+  VCML: "Visual Computing and Machine Learning"
+)
+
 #let study-info = (
   IFB: (
     fk: "07",
