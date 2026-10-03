@@ -1,1 +1,1 @@
-#import "@preview/scribbling-hm:0.1.11": *
+#import "@preview/scribbling-hm:0.1.12": *
