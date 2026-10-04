@@ -1,0 +1,4 @@
+out/
+*.pdf
+**/out/*
+**/diff/*

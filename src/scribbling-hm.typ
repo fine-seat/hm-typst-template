@@ -141,6 +141,7 @@
       date-today: custom-date-format(datetime.today(), lang: language, pattern: "long"),
       t: t,
     )
+    pagebreak()
   } else if document-type == "thesis" {
     import "components/titlepage.typ": thesis-titlepage
 
@@ -158,6 +159,7 @@
       date-today: custom-date-format(datetime.today(), lang: language, pattern: "long"),
       t: t,
     )
+    pagebreak()
   } else if document-type == "hauptseminar" {
     import "components/titlepage.typ": hauptseminar-paper-titlepage
 
@@ -175,6 +177,7 @@
       major: major,
       t: t,
     )
+    pagebreak()
   }
   if (force-odd) { pagebreak(to: "odd") }
   // ---
