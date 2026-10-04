@@ -311,25 +311,27 @@
   }
   counter(page).update(1)
 
-  if (print-abbreviations-list) {
-    heading(t.abbreviations, level: 1)
+  if (abbreviations-list.len() > 0) {
+    if (print-abbreviations-list) {
+      heading(t.abbreviations, level: 1)
 
-    print-glossary(abbreviations-list, deduplicate-back-references: true, minimum-refs: 2, shorthands: (
-      "plural",
-      "capitalize",
-      "capitalize-plural",
-      "short",
-      "long",
-      "longplural",
-    ))
+      print-glossary(abbreviations-list, deduplicate-back-references: true, minimum-refs: 2, shorthands: (
+        "plural",
+        "capitalize",
+        "capitalize-plural",
+        "short",
+        "long",
+        "longplural",
+      ))
 
-    pagebreak(weak: true)
-  } else {
-    print-glossary(
-      abbreviations-list,
-      invisible: true,
-      disable-back-references: true,
-    )
+      pagebreak(weak: true)
+    } else {
+      print-glossary(
+        abbreviations-list,
+        invisible: true,
+        disable-back-references: true,
+      )
+    }
   }
 
   if print-list-of-figures {
