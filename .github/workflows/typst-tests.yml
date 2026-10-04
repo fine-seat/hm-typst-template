@@ -1,0 +1,57 @@
+name: Typst integration tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        typst-version: [0.14.0, 0.14.1, 0.14.2]
+    name: Test for ${{ matrix.typst-version }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify Git LFS installation
+        run: |
+          git --version
+          git lfs version || echo "git-lfs not found"
+
+      - name: Setup typst
+        id: setup-typst
+        uses: typst-community/setup-typst@v4
+        with:
+          typst-version: ${{ matrix.typst-version }}
+
+      - name: Check version typst
+        run: typst --version
+
+      - name: Install tytanic
+        uses: taiki-e/install-action@v2
+        with:
+          tool: tytanic
+
+      - name: Check out repository code
+        uses: actions/checkout@v6
+        with:
+          lfs: true
+
+      - name: Run test suite
+        run: tt run
+
+      - name: Archive test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: typst--${{ steps.setup-typst.outputs.typst-version }}-test-results
+          path: |
+            tests/**/diff/*.png
+            tests/**/out/*.png
+            tests/**/ref/*.png
+          retention-days: 3
