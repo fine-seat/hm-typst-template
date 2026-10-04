@@ -1,0 +1,48 @@
+name: Release after typst/packages merge
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PKG: scribbling-hm
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check merged PRs and create releases
+        run: |
+          gh pr list -R typst/packages \
+            --author fine-seat --state merged \
+            --search "$PKG: in:title" \
+            --json title --limit 30 --jq '.[].title' |
+          while read -r title; do
+            [[ "$title" == "$PKG:"* ]] || continue
+            version="${title#"$PKG:"}"
+            version="${version// /}"
+            [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || continue
+
+            if gh release view "v$version" >/dev/null 2>&1; then
+              echo "v$version already exists"
+              continue
+            fi
+
+            sha="$(git log -S"version = \"$version\"" \
+                   --format=%H -- typst.toml | tail -1)"
+            sha="${sha:-$(git rev-parse HEAD)}"
+
+            echo "Creating release v$version from $sha"
+            gh release create "v$version" \
+              --title "v$version" \
+              --generate-notes \
+              --target "$sha"
+          done
