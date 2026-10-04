@@ -8,9 +8,13 @@
   thesis-type: none,
   t: none,
 ) = {
+  if name == none {
+    panic("Declaration requires a name")
+  }
+
   v(1fr)
 
-  if name != none and study-group != none and semester != none and student-id != none {
+  if study-group != none and semester != none and student-id != none {
     [
       #name#if birth-date != none {
         [, #t.born #birth-date]
