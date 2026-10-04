@@ -1,5 +1,15 @@
 {
   "features": {
+    "ghcr.io/devcontainers/features/git-lfs:1": {
+      "version": "1.2.5",
+      "resolved": "ghcr.io/devcontainers/features/git-lfs@sha256:71c2b371cf12ab7fcec47cf17369c6f59156100dad9abf9e4c593049d789de72",
+      "integrity": "sha256:71c2b371cf12ab7fcec47cf17369c6f59156100dad9abf9e4c593049d789de72"
+    },
+    "ghcr.io/lee-orr/rusty-dev-containers/cargo-binstall:0": {
+      "version": "0.1.8",
+      "resolved": "ghcr.io/lee-orr/rusty-dev-containers/cargo-binstall@sha256:8eb234bd3165a608bcba39892fac7f0be45ed9604084881c7f113c0115d25162",
+      "integrity": "sha256:8eb234bd3165a608bcba39892fac7f0be45ed9604084881c7f113c0115d25162"
+    },
     "ghcr.io/michidk/devcontainers-features/typst:1": {
       "version": "1.1.0",
       "resolved": "ghcr.io/michidk/devcontainers-features/typst@sha256:bab07dacf9464c16de6e40055a123237f8de7c4ec1165373895177a3ff649411",
