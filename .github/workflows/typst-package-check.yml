@@ -1,0 +1,76 @@
+name: Typst package check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  package-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare Typst package cache
+        run: |
+          set -euo pipefail
+          NAME=$(grep -m1 '^name' typst.toml | cut -d'"' -f2)
+          V=$(grep -m1 '^version' typst.toml | cut -d'"' -f2)
+          CACHE="$RUNNER_TEMP/cache/typst/packages/preview"
+          mkdir -p "$CACHE"
+
+          # Own package: the template imports @preview/$NAME:$V
+          mkdir -p "$CACHE/$NAME/$V"
+          rsync -a --exclude .git "$GITHUB_WORKSPACE"/ "$CACHE/$NAME/$V"/
+
+          # Fetch dependencies (including transitive ones) from typst/packages
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://github.com/typst/packages.git "$RUNNER_TEMP/packages"
+          cd "$RUNNER_TEMP/packages"
+
+          scan() {
+            grep -rhoE --exclude-dir=.git \
+              '@preview/[a-z0-9_-]+:[0-9]+\.[0-9]+\.[0-9]+' "$@" 2>/dev/null \
+              | grep -v "^@preview/$NAME:" | sort -u || true
+          }
+
+          seen=""
+          queue=$(scan "$GITHUB_WORKSPACE")
+          while [ -n "$queue" ]; do
+            dirs=""
+            for dep in $queue; do
+              path="packages/preview/${dep#@preview/}"
+              dirs="$dirs ${path/:/\/}"
+              seen="$seen $dep"
+            done
+            git sparse-checkout add $dirs
+            queue=""
+            for dir in $dirs; do
+              for dep in $(scan "$dir"); do
+                case " $seen " in *" $dep "*) ;; *) queue="$queue $dep" ;; esac
+              done
+            done
+          done
+
+          # Only the checked-out dependencies exist as directories
+          if [ -d packages/preview ]; then
+            cp -r packages/preview/. "$CACHE"/
+          fi
+          echo "Packages in cache:"; find "$CACHE" -mindepth 2 -maxdepth 2
+
+      - name: Run typst/package-check
+        run: |
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/data" \
+            -v "$RUNNER_TEMP/cache:/cache" \
+            -v "$RUNNER_TEMP/cache:/root/.cache" \
+            -e XDG_CACHE_HOME=/cache \
+            ghcr.io/typst/package-check:0.7.0 check
