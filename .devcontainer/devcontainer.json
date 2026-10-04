@@ -1,8 +1,16 @@
 {
 	"name": "hm-typst-template",
-	"image": "mcr.microsoft.com/devcontainers/rust:2.0.12-1-trixie",
+	"image": "mcr.microsoft.com/devcontainers/rust:2-1-trixie",
 	"features": {
-	    "ghcr.io/michidk/devcontainers-features/typst:1": {}
+	    "ghcr.io/michidk/devcontainers-features/typst:1": {},
+		"ghcr.io/lee-orr/rusty-dev-containers/cargo-binstall:0": {
+			"packages": [
+				"prek",
+				"typship",
+				"tytanic"
+			]
+		},
+		"ghcr.io/devcontainers/features/git-lfs:1": {}
 	},
 	"postCreateCommand": "bash .devcontainer/post-create.sh",
 	"postAttachCommand": "git config --global --unset http.sslcainfo || true",
