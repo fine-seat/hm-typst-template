@@ -6,7 +6,7 @@
 		"ghcr.io/lee-orr/rusty-dev-containers/cargo-binstall:0": {
 			"packages": [
 				"prek",
-				"typship",
+				"utpm",
 				"tytanic"
 			]
 		},
