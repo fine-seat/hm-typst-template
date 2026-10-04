@@ -1,0 +1,65 @@
+name: Version consistency
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  version-consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check version references
+        run: |
+          set -uo pipefail
+          NAME=$(grep -m1 '^name' typst.toml | cut -d'"' -f2)
+          V=$(grep -m1 '^version' typst.toml | cut -d'"' -f2)
+          SEMVER='[0-9]+\.[0-9]+\.[0-9]+'
+          fail=0
+          err() { echo "::error file=$1${2:+,line=$2}::$3"; fail=1; }
+
+          echo "typst.toml: $NAME $V"
+
+          # 1. The version itself must be plain semver
+          [[ "$V" =~ ^$SEMVER$ ]] || err typst.toml "" "version '$V' is not x.y.z"
+
+          # 2. CHANGELOG: an entry for this version exists ...
+          if [ -f CHANGELOG.md ]; then
+            esc=${V//./\\.}
+            pattern="^#{1,6}[[:space:]]+\\[?v?${esc}\\]?([[:space:]]|\$|-)"
+            grep -qE "$pattern" CHANGELOG.md \
+              || err CHANGELOG.md "" "no heading for version $V"
+
+            # ... and it is the newest one (catches a forgotten bump in typst.toml)
+            top=$(grep -m1 -E "^#{1,6}[[:space:]]+\\[?v?$SEMVER" CHANGELOG.md \
+                  | grep -oE "$SEMVER" | head -1)
+            if [ -n "$top" ] && [ "$top" != "$V" ]; then
+              err CHANGELOG.md "" "newest entry is $top, but typst.toml says $V"
+            fi
+          else
+            err CHANGELOG.md "" "file not found"
+          fi
+
+          # 3. Every @preview/<name>:x.y.z reference to this package must match
+          #    (template/main.typ, examples/imports.typ, README, ...)
+          grep -rnoE --exclude-dir=.git --exclude-dir=.github \
+            --exclude=CHANGELOG.md "@preview/$NAME:$SEMVER" . \
+            | while IFS=: read -r file line match; do
+                [ "${match#*:}" = "$V" ] \
+                  || echo "${file#./}|$line|$match"
+              done > /tmp/bad_refs || true
+          while IFS='|' read -r file line match; do
+            [ -n "$file" ] && err "$file" "$line" "$match does not match $V"
+          done < /tmp/bad_refs
+
+          exit $fail
