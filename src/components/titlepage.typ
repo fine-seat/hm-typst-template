@@ -62,7 +62,7 @@
       column-gutter: 1.5em,
       align: (right, left),
 
-      [#(t.author)(gender: gender)], [#if (author != none) { author } else { todo[#(t.author)("m")] }],
+      [#(t.author)(gender: gender)], [#if (author != none) { author } else { todo[#(t.author)(gender: "m")] }],
 
       [#t.student-id], [#if (id != none) { id } else { todo[Matrikelnummer] }],
 
@@ -76,7 +76,7 @@
             (t.examiner)(gender: examiner-gender)
           }
         } else {
-          (t.examiner)("m")
+          (t.examiner)(gender: "m")
         }
       ],
       [
@@ -87,13 +87,12 @@
             supervisors
           }
         } else {
-          todo[#(t.examiner)("m")]
+          todo[#(t.examiner)(gender: "m")]
         }
       ],
     )
 
   ])
-  pagebreak()
 }
 
 #let modularbeit-titlepage(
@@ -148,7 +147,6 @@
     }
 
   ])
-  pagebreak()
 }
 
 #let hauptseminar-paper-titlepage(
@@ -207,7 +205,7 @@
       column-gutter: 1.5em,
       align: (right, left),
 
-      [#(t.author)(gender: gender)], [#if (author != none) { author } else { todo[#(t.author)("m")] }],
+      [#(t.author)(gender: gender)], [#if (author != none) { author } else { todo[#(t.author)(gender: "m")] }],
 
       [#t.student-id], [#if (id != none) { id } else { todo[Matrikelnummer] }],
 
@@ -219,7 +217,7 @@
             (t.examiner)(gender: examiner-gender)
           }
         } else {
-          (t.examiner)("m")
+          (t.examiner)(gender: "m")
         }
       ],
       [
@@ -230,11 +228,10 @@
             supervisors
           }
         } else {
-          todo[#(t.examiner)("m")]
+          todo[#(t.examiner)(gender: "m")]
         }
       ],
     )
 
   ])
-  pagebreak()
 }
