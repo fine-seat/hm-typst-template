@@ -1,5 +1,35 @@
 #import "/src/scribbling-hm.typ": *
 
+#let german-abbreviations = (
+  (
+    key: "german-cpu",
+    short: "CPU",
+    long: "Central Processing Unit",
+    description: "Zentrale Recheneinheit im Computer",
+  ),
+  (
+    key: "german-api",
+    short: "API",
+    long: "Application Programming Interface",
+    description: "Programmierschnittstelle für Softwarekomponenten",
+  ),
+)
+
+#let english-abbreviations = (
+  (
+    key: "english-cpu",
+    short: "CPU",
+    long: "Central Processing Unit",
+    description: "The central processing unit of a computer",
+  ),
+  (
+    key: "english-api",
+    short: "API",
+    long: "Application Programming Interface",
+    description: "An interface for communication between software components",
+  ),
+)
+
 #let german-thesis = [
   #show: thesis.with(
     title: [Ein umfassender Test der Vorlagenfunktionen für wissenschaftliche Arbeiten],
@@ -18,6 +48,8 @@
     blocking: true,
     gender: "w",
     examiner-gender: "m",
+    abbreviations-list: german-abbreviations,
+    print-abbreviations-list: true,
     draft: false,
     layout-mode: "bound",
   )
@@ -31,10 +63,9 @@
   #lorem(180)
 
   Die vorliegende Arbeit untersucht die Gestaltung wissenschaftlicher Dokumente
-  und verwendet mehrere Querverweise, etwa auf @german-figure und
-  @german-table. Eine zusätzliche Erläuterung steht in der Fußnote.#footnote[
-    #lorem(35)
-  ]
+  und verwendet eine @german-cpu sowie eine @german-api. Außerdem gibt es
+  Querverweise auf @german-figure und @german-table. Eine zusätzliche
+  Erläuterung steht in der Fußnote.#footnote[#lorem(35)]
 
   - #lorem(18)
   - #lorem(18)
@@ -75,7 +106,12 @@
 
   = Ergebnisse
 
-  #lorem(240)
+  #lorem(120)
+
+  Die Auswertung bestätigt erneut die Bedeutung der @german-cpu und der
+  @german-api für die untersuchte Anwendung.
+
+  #lorem(120)
 
   == Diskussion
 
@@ -107,6 +143,8 @@
     blocking: true,
     gender: "m",
     examiner-gender: "d",
+    abbreviations-list: english-abbreviations,
+    print-abbreviations-list: true,
     draft: false,
     layout-mode: "duplex",
   )
@@ -120,10 +158,9 @@
   #lorem(180)
 
   This thesis evaluates a complete academic document and contains references
-  to @english-figure and @english-table. Additional context is provided in a
-  footnote.#footnote[
-    #lorem(35)
-  ]
+  to an @english-cpu and an @english-api. It also contains references to
+  @english-figure and @english-table. Additional context is provided in a
+  footnote.#footnote[#lorem(35)]
 
   - #lorem(18)
   - #lorem(18)
@@ -164,7 +201,12 @@
 
   = Results
 
-  #lorem(240)
+  #lorem(120)
+
+  The evaluation again confirms the relevance of the @english-cpu and the
+  @english-api for the investigated application.
+
+  #lorem(120)
 
   == Discussion
 
