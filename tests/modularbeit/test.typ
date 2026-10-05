@@ -1,5 +1,35 @@
 #import "/src/scribbling-hm.typ": *
 
+#let german-abbreviations = (
+  (
+    key: "german-cpu",
+    short: "CPU",
+    long: "Central Processing Unit",
+    description: "Zentrale Recheneinheit im Computer",
+  ),
+  (
+    key: "german-api",
+    short: "API",
+    long: "Application Programming Interface",
+    description: "Programmierschnittstelle für Softwarekomponenten",
+  ),
+)
+
+#let english-abbreviations = (
+  (
+    key: "english-cpu",
+    short: "CPU",
+    long: "Central Processing Unit",
+    description: "The central processing unit of a computer",
+  ),
+  (
+    key: "english-api",
+    short: "API",
+    long: "Application Programming Interface",
+    description: "An interface for communication between software components",
+  ),
+)
+
 #let german-modularbeit = [
   #show: modularbeit-documentation.with(
     subject: [Entwicklung eines Softwareprototyps],
@@ -8,6 +38,7 @@
     language: "de",
     study-name: study-name.IFB,
     authors: ("Erika Mustermann", "Max Mustermann"),
+    abbreviations-list: german-abbreviations,
     draft: false,
     layout-mode: "screen",
   )
@@ -21,8 +52,9 @@
   #lorem(180)
 
   Die Dokumentation beschreibt den Projektverlauf und enthält einen Verweis auf
-  @german-figure sowie @german-table. Eine zusätzliche Erläuterung steht in der
-  Fußnote.#footnote[#lorem(35)]
+  eine @german-cpu und eine @german-api. Außerdem gibt es einen Verweis auf
+  @german-figure sowie @german-table. Eine zusätzliche Erläuterung steht in
+  der Fußnote.#footnote[#lorem(35)]
 
   - #lorem(18)
   - #lorem(18)
@@ -63,7 +95,12 @@
 
   = Ergebnisse
 
-  #lorem(240)
+  #lorem(120)
+
+  Die Auswertung bestätigt erneut die Bedeutung der @german-cpu und der
+  @german-api für das entwickelte System.
+
+  #lorem(120)
 
   == Diskussion
 
@@ -85,6 +122,7 @@
     language: "en",
     study-name: study-name.IGM,
     authors: ("Alex Example", "Sam Example"),
+    abbreviations-list: english-abbreviations,
     draft: false,
     layout-mode: "screen",
   )
@@ -98,6 +136,7 @@
   #lorem(180)
 
   This documentation describes the project and contains references to
+  an @english-cpu and an @english-api. It also contains references to
   @english-figure and @english-table. Additional context is provided in a
   footnote.#footnote[#lorem(35)]
 
@@ -140,7 +179,12 @@
 
   = Results
 
-  #lorem(240)
+  #lorem(120)
+
+  The evaluation again confirms the relevance of the @english-cpu and the
+  @english-api for the developed system.
+
+  #lorem(120)
 
   == Discussion
 
