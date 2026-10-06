@@ -54,3 +54,39 @@
   thesis-type: bachelor-en,
   t: en,
 )
+
+#pagebreak()
+
+#declaration(
+  name: "Erika Mustermann",
+  submission-date: "4. Oktober 2026",
+  thesis-type: bachelor-de,
+  ai-used: true,
+  t: de,
+)
+
+#pagebreak()
+
+#declaration(
+  name: "Alex Example",
+  submission-date: "October 4, 2026",
+  study-group: "IF7",
+  semester: "Winter semester 2026/27",
+  student-id: 12345678,
+  thesis-type: bachelor-en,
+  ai-used: true,
+  t: en,
+)
+
+#pagebreak()
+
+#declaration(
+  name: "Erika Mustermann",
+  submission-date: "4. Oktober 2026",
+  thesis-type: bachelor-de,
+  ai-used: true,
+  declaration-text: [
+    #lorem(128)
+  ],
+  t: de,
+)
