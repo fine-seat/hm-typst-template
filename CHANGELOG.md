@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.13
+
+> [!TIP]
+> The declaration of independent writing is now configurable. Set `ai-used: true` to use the official wording for theses written with the support of AI tools, or pass your own content via `declaration-text`, which takes precedence over both the default and the AI wording.
+> ```typst
+> #show: thesis.with(
+>   // ...
+>   ai-used: true,
+>   // or: declaration-text: [Eigener Erklärungstext ...],
+> )
+> ```
+
+> [!IMPORTANT]
+> The declaration now requires `author` to be set and fails with a clear error message otherwise.
+
+> [!NOTE]
+> - The English seminar label now reads "Graduate Seminar in" instead of "Advanced Seminar in".
+> - Fixed missing `gender:` named arguments in title-page placeholders for unset author/examiner.
+
 ## 0.1.12
 
 > [!TIP]
