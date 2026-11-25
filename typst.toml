@@ -1,6 +1,6 @@
 [package]
 name = "scribbling-hm"
-version = "0.1.12"
+version = "0.1.13"
 entrypoint = "lib.typ"
 authors = ["stefanie <@fine-seat>"]
 license = "MIT"
